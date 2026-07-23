@@ -1,0 +1,47 @@
+project:
+  type: website
+  render:
+    - "**/*.qmd"
+
+lang: nl
+
+website:
+  title: "Informatica-wetenschappen 6"
+  site-url: https://iw6.heytens.tech/
+  # Browser-tab icon: the logo (222x256) padded to a transparent square so
+  # browsers don't squeeze it. Regenerate from assets/vp-logo.png if the
+  # logo ever changes (Pillow: paste centered on a 256x256 RGBA canvas).
+  favicon: assets/favicon.png
+  page-footer:
+    center: |
+      ![](/assets/vp-logo.png){height=22px fig-alt="Vita et Pax"} Vita et Pax · Schoten
+  navbar:
+    logo: assets/vp-logo.png
+
+format:
+  live-html:
+    theme:
+      light: [flatly, theme/vep.scss]
+      dark: [darkly, theme/vep.scss, theme/vep-dark.scss]
+    toc: true
+    toc-location: left
+    # Use the screen: this is a code course read on 1366px Chromebooks, not
+    # a centered prose document ("article", the default, reserves wide side
+    # margins around a fixed reading column). The toc column is the one
+    # number kept: the default 250px is generous for short pages.
+    page-layout: full
+    grid:
+      gutter-width: .5em
+    code-copy: true
+    # Pyodide is not configured: quarto-live's default loads it from
+    # jsDelivr, version pinned by the vendored extension
+    # (_extensions/r-wasm/live/).
+    #
+    # MathJax from Quarto's default host (cdnjs), version pinned — but the
+    # SVG build instead of the default CHTML: CHTML grid-fits webfont glyphs
+    # at DPR 1 (the school Chromebooks) and at many body sizes that clips
+    # superscript tops (10^0 read as 10^u). SVG draws glyphs as vector
+    # paths — no fonts, no hinting — pixel-identical on every screen.
+    html-math-method:
+      method: mathjax
+      url: https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg-full.js

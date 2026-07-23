@@ -1,0 +1,7 @@
+# Python toolchain for `quarto render`, pinned so local and CI builds stay
+# identical over the years. Install locally once: pip install -r tools/requirements.txt
+#
+# jupyter + matplotlib are anticipatory: no page has server-side executed
+# cells yet, but future lesson pages (e.g. pre-rendered figures) will.
+jupyter==1.1.1
+matplotlib==3.10.8

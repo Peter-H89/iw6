@@ -1,0 +1,22 @@
+/*-- scss:defaults --*/
+// Vita et Pax dark-mode repairs — layered after vep.scss, over darkly.
+// Every entry exists because darkly or quarto-live leaves a light-mode value
+// in place on a dark page; nothing here is decoration.
+
+// Links: the logo blue reads 2.2:1 on darkly's #222 background. Same hue
+// with lightness raised to .65 gives 6.1:1 (WCAG AA). The navbar keeps the
+// true logo blue through $primary.
+$link-color: #92a2b9 !default;
+
+// Inline code: darkly defines no code variables at all, so Quarto's
+// light-mode defaults leak through — a near-white chip that becomes
+// invisible under inherited white heading text. Dark chip + the light-mode
+// purple lifted for contrast (6.0:1 on the chip; even worst-case white
+// heading text sits at 12.4:1).
+$code-bg:    #343434 !default;
+$code-color: #c9a6e8 !default;
+
+// NOTE: the site deliberately uses Quarto's default highlight style (arrow).
+// quarto-live's editors hardcode arrow-light values as fallbacks, so any
+// OTHER choice of highlight-style needs its dark variant checked against
+// the editors (historic example: github dark left `=`/`>` near-invisible).

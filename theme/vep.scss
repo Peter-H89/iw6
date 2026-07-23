@@ -1,0 +1,117 @@
+/*-- scss:defaults --*/
+// Vita et Pax theme layer, shared by light and dark mode.
+//
+// Usage (_quarto.yml):
+//   theme:
+//     light: [flatly, theme/vep.scss]
+//     dark:  [darkly, theme/vep.scss, theme/vep-dark.scss]
+//
+// Layering: Quarto puts this file's !default declarations before the
+// Bootswatch theme's own, so values here win. Everything that is correct in
+// both modes lives here; repairs that only make sense on a dark page live in
+// vep-dark.scss.
+
+// CMU Bright — the sans-serif companion of Computer Modern. Body text then
+// matches both the MathJax output on these pages and the (LaTeX/cmbright)
+// printed lesson materials. Latin subset only (covers Dutch and French;
+// MathJax ships its own glyphs): ~130 KB total, SIL OFL, self-hosted.
+// Regenerate the woff2 files with assets/fonts/subset.py.
+$font-family-sans-serif: "CMU Bright", -apple-system, BlinkMacSystemFont,
+  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
+$font-size-base:  1.05rem !default; // CMU Bright renders small; compensate
+$line-height-base: 1.6 !default;
+
+// One knob for all text sizes: everything on the page is set in rem — body
+// text ($font-size-base above) and the callout boxes ("important",
+// "warning", ...; Quarto hardcodes those to .9rem) both multiply this root
+// size, so raising it scales them together. Quarto's default is 17px; 18px
+// lifts body text 17.85px → 18.9px and callout text 15.3px → 16.2px.
+$font-size-root: 18px !default;
+
+// flatly/darkly @import Lato from fonts.googleapis.com. It would be unused
+// (we set our own stack) and is a third-party request a school site should
+// not make. Must be `false`, not `null`: !default treats null as unset.
+$web-font-path: false !default;
+
+// School identity: the blue sampled from the logo (assets/vp-logo.png).
+// Replaces flatly/darkly's navy $primary (navbar, buttons) and their teal
+// links ($link-color aliases $success in both themes). 5.9:1 on white — AA.
+// vep-dark.scss re-lightens links for the dark background; the navbar keeps
+// the true logo blue in both modes.
+$vp-blue:    #536681 !default;
+$primary:    $vp-blue !default;
+$link-color: $vp-blue !default;
+
+// flatly pins $nav-link-padding-y to .5rem; darkly inherits a font-relative
+// default that our 1.05rem base turns into .525rem — making the navbar brand
+// box 34px vs 35px between modes. Pin it once for both.
+$nav-link-padding-y: .5rem !default;
+
+// Flatten the expanded navbar for screen real estate (80.5px stock; ~49px
+// at the 18px root). With the outer padding zeroed its height is just the
+// nav-link box (2×$nav-link-padding-y + one 1.6-line of text, 48.2px) +
+// 1px border — going lower means shrinking the links' click targets and
+// the 44px logo below.
+$navbar-padding-y: 0 !default;
+
+/*-- scss:rules --*/
+
+// Self-hosted CMU Bright (latin subset). URLs are project-root-relative:
+// Quarto discovers them, copies the files into _site next to the compiled
+// stylesheet and rewrites the paths.
+@each $weight, $file in (400: "cmu-bright-500-roman",
+                         600: "cmu-bright-600-roman",
+                         700: "cmu-bright-700-roman") {
+  @font-face {
+    font-family: "CMU Bright";
+    src: url("assets/fonts/#{$file}-latin.woff2") format("woff2");
+    font-weight: $weight;
+    font-style: normal;
+    font-display: swap;
+  }
+}
+
+@each $weight, $file in (400: "cmu-bright-500-italic",
+                         700: "cmu-bright-700-italic") {
+  @font-face {
+    font-family: "CMU Bright";
+    src: url("assets/fonts/#{$file}-latin.woff2") format("woff2");
+    font-weight: $weight;
+    font-style: italic;
+    font-display: swap;
+  }
+}
+
+// Bigger logo without a taller navbar: raise Quarto's 24px cap to 44px, and
+// let the negative vertical margin shrink the *layout* box back to the
+// original 24px — the logo then can never be the tallest thing in the row
+// (the nav links are, at 48px), so navbar height is untouched by design.
+.navbar img.navbar-logo {
+  max-height: 44px;
+  margin-block: -10px; // (44px − 2×10px) = the old 24px layout box
+}
+
+// Quarto hardcodes ~44px of padding inside the left toc column (20px
+// sidebar + 17.85px nav + 6.7px list) — no grid dial reaches it, and it
+// makes the toc text start visibly deeper than the content's right edge
+// ends (measured on device). Trim it so the toc text aligns with the
+// layout's own gutters.
+#quarto-sidebar {
+  padding-left: 0;
+
+  nav {
+    padding-right: .5rem;
+  }
+}
+
+// MathJax 3 output has no overflow handling: one over-wide display formula
+// forces the whole page narrower (worst in portrait) instead of degrading
+// locally. Give display math its own scrollbox — inert unless a formula
+// actually exceeds the column (stress page 2.3 is the test). Selector says
+// SVG: the site vendors MathJax's SVG output, not the CHTML default, after
+// CHTML clipped superscript tops on the DPR-1 Chromebooks (see vendor.py).
+mjx-container[jax="SVG"][display="true"] {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
