@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl" xml:lang="nl"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1.4 Werken in de terminal – Informatica-wetenschappen 6</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../python/zelftoets.html" rel="next">
+<link href="../python/lussen.html" rel="prev">
+<link href="../assets/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d785a4aeb42aed41a920a3a11bbaa792.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-9dae2121ff359c9a3e35a0f349bb9a21.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d785a4aeb42aed41a920a3a11bbaa792.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Geen resultaten",
+    "search-matching-documents-text": "Gevonden documenten",
+    "search-copy-link-title": "Kopieer link om te zoeken",
+    "search-hide-matches-text": "Extra overeenkomsten verbergen",
+    "search-more-match-text": "meer overeenkomst in dit document",
+    "search-more-matches-text": "meer overeenkomsten in dit document",
+    "search-clear-button-title": "Wissen",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuleren",
+    "search-submit-button-title": "Verzenden",
+    "search-label": "Zoeken"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<meta name="robots" content="noindex, nofollow">
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/vp-logo.png" alt="" class="navbar-logo light-content">
+    <img src="../assets/vp-logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Informatica-wetenschappen 6</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Zoeken"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Schakel navigatie" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../voorwoord.html"> 
+<span class="menu-text">Voorwoord</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../python/uitdrukkingen.html" aria-current="page"> 
+<span class="menu-text">Leereenheid 1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Schakel donkere modus"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Schakel zijbalknavigatie" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../python/uitdrukkingen.html">Python</a></li><li class="breadcrumb-item"><a href="../python/terminal.html">1.4 Werken in de terminal</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Schakel zijbalknavigatie" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Schakel sectie">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/uitdrukkingen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.1 Uitdrukkingen en functies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/variabelen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.2 Variabelen en types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/lussen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.3 Herhaling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/terminal.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">1.4 Werken in de terminal</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/zelftoets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Zelftoets</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Op deze pagina</h2>
+   
+  <ul>
+  <li><a href="#om-je-van-de-eerste-schrik-te-verlossen" id="toc-om-je-van-de-eerste-schrik-te-verlossen" class="nav-link active" data-scroll-target="#om-je-van-de-eerste-schrik-te-verlossen"><span class="header-section-number">1</span> Om je van de eerste schrik te verlossen</a></li>
+  <li><a href="#het-bestandssysteem-is-een-boom" id="toc-het-bestandssysteem-is-een-boom" class="nav-link" data-scroll-target="#het-bestandssysteem-is-een-boom"><span class="header-section-number">2</span> Het bestandssysteem is een boom</a></li>
+  <li><a href="#waar-je-bent-en-waar-je-heen-gaat" id="toc-waar-je-bent-en-waar-je-heen-gaat" class="nav-link" data-scroll-target="#waar-je-bent-en-waar-je-heen-gaat"><span class="header-section-number">3</span> Waar je bent en waar je heen gaat</a></li>
+  <li><a href="#een-map-maken-een-bestand-schrijven-en-het-uitvoeren" id="toc-een-map-maken-een-bestand-schrijven-en-het-uitvoeren" class="nav-link" data-scroll-target="#een-map-maken-een-bestand-schrijven-en-het-uitvoeren"><span class="header-section-number">4</span> Een map maken, een bestand schrijven, en het uitvoeren</a></li>
+  <li><a href="#kopiëren-hernoemen-en-weggooien" id="toc-kopiëren-hernoemen-en-weggooien" class="nav-link" data-scroll-target="#kopiëren-hernoemen-en-weggooien"><span class="header-section-number">5</span> Kopiëren, hernoemen en weggooien</a></li>
+  <li><a href="#zelf-verder-zoeken" id="toc-zelf-verder-zoeken" class="nav-link" data-scroll-target="#zelf-verder-zoeken"><span class="header-section-number">6</span> Zelf verder zoeken</a></li>
+  <li><a href="#minder-typen" id="toc-minder-typen" class="nav-link" data-scroll-target="#minder-typen"><span class="header-section-number">7</span> Minder typen</a></li>
+  <li><a href="#conclusie" id="toc-conclusie" class="nav-link" data-scroll-target="#conclusie"><span class="header-section-number">8</span> Conclusie</a></li>
+  <li><a href="#begrippen" id="toc-begrippen" class="nav-link" data-scroll-target="#begrippen"><span class="header-section-number">9</span> Begrippen</a></li>
+  <li><a href="#oefeningen" id="toc-oefeningen" class="nav-link" data-scroll-target="#oefeningen"><span class="header-section-number">10</span> Oefeningen</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../python/uitdrukkingen.html">Python</a></li><li class="breadcrumb-item"><a href="../python/terminal.html">1.4 Werken in de terminal</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">1.4 Werken in de terminal</h1>
+<p class="subtitle lead">Waar je bent, waar je heen wil, en hoe je een programma bewaart</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled" title="Leerdoelen">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Opmerking</span>Leerdoelen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Na deze les kan je:</p>
+<ul>
+<li>de bouw van een commando aanwijzen: de naam, de opties en de argumenten</li>
+<li>het bestandssysteem beschrijven als een boom en een pad erin lezen</li>
+<li>je verplaatsen met <code>pwd</code>, <code>ls</code> en <code>cd</code></li>
+<li>een map maken, een bestand schrijven in <code>micro</code> en het uitvoeren met <code>python3</code></li>
+<li>kopiëren, hernoemen en weggooien met <code>cp</code>, <code>mv</code>, <code>rm</code> en <code>rmdir</code>, en uitleggen waarom weggooien hier definitief is</li>
+<li>tab-aanvulling en de pijl omhoog gebruiken om minder te typen</li>
+</ul>
+</div>
+</div>
+<p>We gebruiken als programmeeromgeving een Linux virtuele machine op een Chromebook. Je bedient hem niet met knoppen maar met getypte commando’s. Het venster waarin je typt heet de <strong>terminal</strong>. Het programma daarbinnen dat je commando’s leest en uitvoert, heet de <strong>shell</strong>. Deze les leert je de eerste stappen om ermee te kunnen werken.</p>
+<section id="om-je-van-de-eerste-schrik-te-verlossen" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Om je van de eerste schrik te verlossen</h1>
+<p>Een regel in een terminal ziet eruit als geheimschrift. Dat is het niet. Elk <strong>commando</strong> dat je ooit zal typen heeft dezelfde bouw, met drie plaatsen in een vaste volgorde: eerst de naam, dan de <strong>opties</strong>, dan de <strong>argumenten</strong>. De naam zegt wat er moet gebeuren, de opties zeggen hoe, en de argumenten zeggen waarop.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>        <span class="at">-l</span>      /home/leerling</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">micro</span>             oefening1.py</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span>           oefening1.py</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span>                oefeningen</span></code></pre></div><button title="Kopieer naar klembord" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Drie van die vier hebben geen enkele optie. Dat hoeft ook niet, dan gebeurt gewoon het basisgeval.</p>
+<p>Een optie herken je aan het streepje. Eén streepje hoort bij een letter, zoals <code>-h</code>, twee streepjes bij een woord, zoals <code>--help</code>.</p>
+<p>De drie plaatsen worden gescheiden door spaties. Een bestand met een spatie in zijn naam zorgt dus voor problemen: de shell telt er twee argumenten in plaats van één.</p>
+<p>En daarmee kan je een commando lezen dat je nooit eerder zag. Wat <code>qpdf --decrypt --linearize rapport_oud.pdf rapport_nieuw.pdf</code> precies doet weet je niet, maar je ziet een naam, twee opties en twee bestanden.</p>
+</section>
+<section id="het-bestandssysteem-is-een-boom" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Het bestandssysteem is een boom</h1>
+<p>Alle <strong>bestanden</strong> en <strong>mappen</strong> samen vormen één <strong>boom</strong>. Bovenaan staat één map waar al de rest onder valt, en die heet de <strong>root</strong>. Je schrijft hem als <code>/</code>. Elke map kan mappen en bestanden bevatten. Een bestand bevat geen mappen en is dus altijd een <strong>blad</strong>, een punt waar de boom ophoudt.</p>
+<div class="columns valign-center">
+<div class="column" style="width:46%;">
+<pre><code>/
+├── etc
+├── home
+│   └── leerling
+│       ├── iw6
+│       │   ├── data.csv
+│       │   └── oefeningen
+│       │       └── oefening1.py
+│       └── notities.txt
+└── usr</code></pre>
+</div><div class="column" style="width:8%;">
+
+</div><div class="column" style="width:46%;">
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    root["/"] --&gt; etc["etc"]
+    root --&gt; home["home"]
+    root --&gt; usr["usr"]
+    home --&gt; leerling["leerling"]
+    leerling --&gt; iw6["iw6"]
+    leerling --&gt; notities(["notities.txt"])
+    iw6 --&gt; data(["data.csv"])
+    iw6 --&gt; oefeningen["oefeningen"]
+    oefeningen --&gt; oefening1(["oefening1.py"])
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>In plaats van <code>leerling</code> staat daar jouw eigen gebruikersnaam.</p>
+<p>De map met jouw naam is je <strong>thuismap</strong>. Daar staat jouw werk, en daar begin je telkens als je de terminal opent. Omdat je die map voortdurend nodig hebt, bestaat er een afkorting voor: <code>~</code>.</p>
+<p>Een <strong>pad</strong> is een route door de boom, met <code>/</code> tussen de stappen. Er zijn twee manieren om er een te schrijven. Een pad dat begint met <code>/</code> vertrekt bij de root en wijst altijd dezelfde plaats aan, waar je ook staat. Een pad dat daar niet mee begint, vertrekt bij de map waar je op dit moment staat.</p>
+<p>Twee namen komen in elk pad terug. <code>.</code> is de map waar je staat, en <code>..</code> is de map één stap hoger.</p>
+<div class="terzijde">
+<p>Een boom heeft een eigenschap die dit alles eenvoudig maakt. Tussen twee punten in een boom bestaat er precies één weg. Niet nul, want alles is met dezelfde root verbonden, en niet twee, want dan zat er een lus in en was het geen boom meer. Daarom volstaat het te weten waar je bent en waar je heen wil. De enige mogelijke route ligt per definitie vast.</p>
+</div>
+</section>
+<section id="waar-je-bent-en-waar-je-heen-gaat" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Waar je bent en waar je heen gaat</h1>
+<p>Drie commando’s volstaan. Hun namen lijken geheimschrift en zijn het niet: het zijn afgekorte Engelse woorden.</p>
+<p><code>pwd</code> staat voor <em>print working directory</em> en zegt in welke map je staat. Je <strong>werkmap</strong>, met andere woorden.</p>
+<pre class="console"><code>leerling@penguin:~$ pwd
+/home/leerling</code></pre>
+<p>De eerste regel is wat jij typte, de tweede wat <code>pwd</code> antwoordde. Wat ervoor staat, <code>leerling@penguin:~$</code>, heet de <strong>prompt</strong>. Die zet de shell er zelf bij, om te zeggen dat het jouw beurt is. Je leest er je gebruikersnaam in, de naam van de machine, en de map waar je staat. Achter de <code>$</code> begint wat jij typt.</p>
+<p><code>ls</code> staat voor <em>list</em> en toont wat er in die map staat.</p>
+<pre class="console"><code>leerling@penguin:~$ ls
+iw6  notities.txt</code></pre>
+<p>Staat er niets in de map, dan toont <code>ls</code> niets. Dat is geen fout. Er zijn immers twee soorten commando’s. <code>pwd</code> en <code>ls</code> zijn er om iets te tonen, en die antwoorden dus altijd, ook al is het antwoord soms leeg. Andere commando’s zijn er om iets te doen, en die zwijgen als het lukt: je krijgt gewoon een nieuwe prompt. Zie je bij zo’n commando toch een regel verschijnen, dan is er iets misgelopen.</p>
+<p><code>cd</code> staat voor <em>change directory</em> en verplaatst je.</p>
+<pre class="console"><code>leerling@penguin:~$ cd iw6
+leerling@penguin:~/iw6$ pwd
+/home/leerling/iw6</code></pre>
+<p>Merk op dat de prompt zelf meeverandert en toont waar je staat. <code>cd ..</code> brengt je een stap omhoog, en <code>cd</code> zonder argument brengt je in één keer terug naar je thuismap.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Belangrijk">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Belangrijk</span>Belangrijk
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Een commando werkt op de map waar je staat, tenzij je er een pad bij geeft. <code>ls</code> toont hier, <code>ls /etc</code> toont daar. Wie een bestand niet terugvindt, staat meestal ergens anders dan gedacht. <code>pwd</code> is dan het eerste wat je typt.</p>
+</div>
+</div>
+</section>
+<section id="een-map-maken-een-bestand-schrijven-en-het-uitvoeren" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Een map maken, een bestand schrijven, en het uitvoeren</h1>
+<p><code>mkdir</code> staat voor <em>make directory</em>. Je geeft de naam van de nieuwe map mee als argument.</p>
+<pre class="console"><code>leerling@penguin:~$ mkdir iw6
+leerling@penguin:~$ cd iw6
+leerling@penguin:~/iw6$ mkdir oefeningen
+leerling@penguin:~/iw6$</code></pre>
+<p>De tweede <code>mkdir</code> maakt <code>oefeningen</code> binnen <code>iw6</code>, want dat is de map waar je op dat moment staat.</p>
+<p>Om een bestand te schrijven gebruik je <strong>micro</strong>, een teksteditor die in de terminal draait. Die staat nog niet op je machine, dus haal je hem eerst binnen. Dat doe je één keer.</p>
+<pre class="console"><code>leerling@penguin:~/iw6$ sudo apt install micro</code></pre>
+<p><code>apt</code> is het programma dat software installeert en bijwerkt, en <code>sudo</code> ervoor zegt dat het commando met beheerdersrechten moet lopen. Dat is nodig omdat installeren het hele systeem raakt en niet enkel jouw thuismap. Die beheerder heet zelf <code>root</code>, dezelfde naam als de bovenste map, en het is die tweede betekenis die meespeelt bij het <em>rooten</em> van een gsm: niet de map, maar de rechten.</p>
+<p>Daarna geef je micro de naam van het bestand mee. Bestaat het nog niet, dan maakt micro het aan.</p>
+<pre class="console"><code>leerling@penguin:~/iw6$ micro oefeningen/oefening1.py</code></pre>
+<p>Je typt je code zoals in eender welke editor. <code>Ctrl-S</code> bewaart en <code>Ctrl-Q</code> sluit af. Daarna sta je terug in de terminal.</p>
+<p>Een Pythonbestand voer je uit door <code>python3</code> het bestand als argument te geven.</p>
+<pre class="console"><code>leerling@penguin:~/iw6$ python3 oefeningen/oefening1.py
+Hallo</code></pre>
+<p>Zit er een fout in, dan krijg je een foutmelding met het bestand, het regelnummer en het stuk van de regel erbij.</p>
+<pre class="console"><code>leerling@penguin:~/iw6$ python3 oefeningen/oefening1.py
+Traceback (most recent call last):
+  File "/home/leerling/iw6/oefeningen/oefening1.py", line 1, in &lt;module&gt;
+    print(naam)
+          ^^^^
+NameError: name 'naam' is not defined</code></pre>
+<p>Dat is meer dan een cel op deze site je geeft. Je weet welk bestand, welke regel, en welk stuk van die regel.</p>
+</section>
+<section id="kopiëren-hernoemen-en-weggooien" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Kopiëren, hernoemen en weggooien</h1>
+<p>Wat je maakt, wil je vroeg of laat ook kopiëren, een andere naam geven of weggooien. Daarvoor zijn er vier commando’s, en er hoort één waarschuwing bij alle vier: de terminal heeft geen Prullenbak. Wat je hier weggooit is weg, en staat ook niet in de prullenbak van de Bestanden-app.</p>
+<p><code>cp</code> staat voor <em>copy</em> en maakt een kopie. Je geeft eerst het bestand mee dat je kopieert, dan de naam die de kopie moet krijgen.</p>
+<pre class="console"><code>leerling@penguin:~/iw6$ cp oefeningen/oefening1.py oefeningen/oefening1.py.bak</code></pre>
+<p>De extensie <code>.bak</code> komt van <em>backup</em>. Programmeurs zetten ze achter een naam om aan te geven dat het een reservekopie is, en in <code>ls</code> zie je dat dan meteen terug. De shell behandelt zo’n bestand als elk ander, maar doordat de naam op <code>.bak</code> eindigt en niet meer op <code>.py</code>, voer je de kopie ook niet per ongeluk uit.</p>
+<p>Dat is meteen het enige ongedaan maken dat je zelf in handen hebt. Ga je iets uitproberen waarvan je niet zeker bent, maak dan eerst een kopie. Loopt het mis, dan zet je de kopie terug.</p>
+<p><code>mv</code> staat voor <em>move</em> en verplaatst een bestand. Hernoemen doe je met hetzelfde commando, want de naam van een bestand is meteen zijn plaats in de boom. Wie hernoemt, verplaatst dus binnen dezelfde map.</p>
+<pre class="console"><code>leerling@penguin:~/iw6$ mv oefeningen/oefening1.py.bak oefeningen/kopie.py
+leerling@penguin:~/iw6$ mv oefeningen/kopie.py .</code></pre>
+<p>De eerste regel hernoemt, de tweede verplaatst de kopie naar <code>iw6</code>, de map waar je staat. Het is tweemaal hetzelfde commando.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Opgelet">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Waarschuwing</span>Opgelet
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Bestaat de naam die je als bestemming opgeeft al, dan overschrijven <code>mv</code> en <code>cp</code> dat bestand zonder iets te vragen. Je krijgt geen waarschuwing en geen uitvoer, enkel een nieuwe prompt, en de vorige inhoud is weg. Kijk met <code>ls</code> na of de naam die je kiest nog vrij is.</p>
+</div>
+</div>
+<p><code>rm</code> staat voor <em>remove</em> en gooit een bestand weg.</p>
+<pre class="console"><code>leerling@penguin:~/iw6$ rm kopie.py</code></pre>
+<p>Op een map werkt dat niet.</p>
+<pre class="console"><code>leerling@penguin:~/iw6$ rm oefeningen
+rm: cannot remove 'oefeningen': Is a directory</code></pre>
+<p><code>rmdir</code> staat voor <em>remove directory</em> en gooit een map weg, maar enkel als er niets meer in staat.</p>
+<pre class="console"><code>leerling@penguin:~/iw6$ rmdir oefeningen
+rmdir: failed to remove 'oefeningen': Directory not empty</code></pre>
+<p>Twee weigeringen dus, en ze staan er met opzet. Ze houden tegen dat één verkeerd getypt argument een volledige map meeneemt.</p>
+<p>Wil je een map met inhoud en al weg, dan voeg je bij <code>rm</code> de optie <code>-r</code> toe, van <em>recursive</em>, waarmee het commando de map en alles wat erin zit doorloopt.</p>
+<pre class="console"><code>leerling@penguin:~/iw6$ rm -r oud</code></pre>
+<p>Daarmee valt de weigering weg, en je vangnet dus ook. Typ eerst <code>ls oud</code>, zodat je ziet wat je meeneemt. Dat kost één commando.</p>
+<p>Tot slot is er één ding op deze pagina dat je wel ongedaan kan maken. <code>cd -</code> brengt je terug naar de map waar je daarvoor stond, en toont welke dat is.</p>
+<pre class="console"><code>leerling@penguin:~/iw6$ cd /etc
+leerling@penguin:/etc$ cd -
+/home/leerling/iw6
+leerling@penguin:~/iw6$</code></pre>
+<p>Dat is meteen de uitzondering op de stilte uit sectie 3: <code>cd -</code> doet iets én zegt iets, omdat je anders niet weet waar je belandt.</p>
+</section>
+<section id="zelf-verder-zoeken" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Zelf verder zoeken</h1>
+<p>Je kent nu tien commando’s. Er bestaan er duizenden, en niemand kent die uit het hoofd. Wat je wel hoort te kunnen, is uitzoeken hoe iets werkt.</p>
+<p>Een <strong>taalmodel</strong> kent deze commando’s grondig. Ze bestaan al meer dan vijftig jaar, ze staan in ontelbare handleidingen, en ze veranderen nauwelijks. Vraag het wel precies. Zeg wat je wil bereiken, in welke map je staat, en hoe je bestanden heten. “Hoe verwijder ik een map” levert een ander antwoord dan “hoe verwijder ik de map oefeningen in mijn thuismap, met alles wat erin staat”.</p>
+<p>Dat botst niet met wat het voorwoord zegt over taalmodellen. Daar gaat het over oefeningen, die er staan om na te gaan of je iets zelf kan. Een commando opzoeken is dat niet. Het commando is je gereedschap, niet de opgave.</p>
+<div class="terzijde">
+<p>Onder programmeurs is <code>man &lt;commando&gt;</code> het klassieke naslagwerk. Het toont de volledige handleiding, geschreven voor wie al weet waar hij naar zoekt, en het staat op zowat elke Linuxmachine. Op deze is het niet geïnstalleerd, en je zal het waarschijnlijk nooit missen.</p>
+</div>
+<p>Online staat er over deze commando’s meer geschreven dan over eender welke programmeertaal. Elke foutmelding die jij krijgt, kreeg iemand anders al.</p>
+<p>En daar zit meteen de reden waarom je dit in een terminal leert en niet in een app die programmeren aanleert. Dit is geen omgeving die voor de les bedacht werd en die ophoudt te bestaan als een abonnement afloopt. De shell, de mappenboom en deze commando’s liggen onder het grootste deel van het internet, onder de servers waarop websites draaien, en onder heel wat programma’s met knoppen die je dagelijks gebruikt. Ze staan er al een halve eeuw, en er is niets dat erop wijst dat daar snel verandering in komt.</p>
+</section>
+<section id="minder-typen" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Minder typen</h1>
+<p>Twee toetsen halen het meeste werk weg.</p>
+<p>Met <strong>tab</strong> vult de shell aan. Typ je <code>cd iw</code> en druk je tab, dan maakt hij daar <code>cd iw6/</code> van. Past er meer dan één naam bij wat je typte, dan gebeurt er niets bij de eerste druk en toont hij bij de tweede alle mogelijkheden. Tab werkt op commando’s, op mapnamen en op bestandsnamen.</p>
+<p>Met de <strong>pijl omhoog</strong> haal je vorige commando’s terug. Eén keer drukken geeft het laatste, nog eens drukken het commando daarvoor. Je kan het aanpassen voor je enter drukt. Bij het herhaaldelijk uitvoeren van hetzelfde programma scheelt dat elke keer een volledige regel.</p>
+<p>Wie deze twee gebruikt typt minder en maakt minder typfouten. Tab is meteen ook een controle: vult hij niet aan, dan bestaat wat je typte niet.</p>
+</section>
+<section id="conclusie" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Conclusie</h1>
+<p>Een commando bestaat uit een naam, opties en argumenten, in die volgorde. Het bestandssysteem is een boom met <code>/</code> als root, en een pad is een route erin. Je thuismap is <code>~</code>, de map waar je staat is <code>.</code> en één stap hoger is <code>..</code>. Met <code>pwd</code>, <code>ls</code> en <code>cd</code> weet je waar je staat en raak je waar je wil zijn. Met <code>mkdir</code>, <code>micro</code> en <code>python3</code> maak je een plaats, schrijf je er een programma en voer je het uit. Met <code>cp</code>, <code>mv</code>, <code>rm</code> en <code>rmdir</code> kopieer, hernoem en verwijder je, en dat laatste kan je niet ongedaan maken. Stilte betekent dat het gelukt is.</p>
+</section>
+<section id="begrippen" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Begrippen</h1>
+<ul>
+<li><strong>terminal</strong> (<em>terminal</em>): het venster waarin je typt en waarin de uitvoer verschijnt.</li>
+<li><strong>shell</strong> (<em>shell</em>): het programma in de terminal dat je commando’s leest en uitvoert.</li>
+<li><strong>commando</strong> (<em>command</em>): een opdracht aan de computer, bestaande uit een naam, eventuele opties en eventuele argumenten.</li>
+<li><strong>optie</strong> (<em>option, flag</em>): een aanpassing van wat een commando doet, herkenbaar aan een streepje, zoals <code>-l</code>.</li>
+<li><strong>argument</strong> (<em>argument</em>): datgene waarop een commando werkt, meestal een bestand of een map.</li>
+<li><strong>prompt</strong> (<em>prompt</em>): wat de shell vooraan de regel zet om aan te geven dat het jouw beurt is, hier <code>leerling@penguin:~$</code>.</li>
+<li><strong>map</strong> (<em>directory, folder</em>): een plaats in de boom die bestanden en andere mappen kan bevatten.</li>
+<li><strong>bestand</strong> (<em>file</em>): een stuk bewaarde inhoud, dat zelf niets bevat.</li>
+<li><strong>boom</strong> (<em>tree</em>): de structuur van alle mappen en bestanden samen, waarbij alles onder één root valt en er tussen twee punten precies één weg bestaat.</li>
+<li><strong>root</strong>: de bovenste map, geschreven als <code>/</code>.</li>
+<li><strong>blad</strong> (<em>leaf</em>): een punt in de boom waar niets meer onder zit. Elk bestand is een blad.</li>
+<li><strong>thuismap</strong> (<em>home directory</em>): de map die van jou is, afgekort als <code>~</code>.</li>
+<li><strong>pad</strong> (<em>path</em>): een route door de boom, met <code>/</code> tussen de stappen.</li>
+<li><strong>werkmap</strong> (<em>working directory</em>): de map waar je op dit moment staat.</li>
+</ul>
+</section>
+<section id="oefeningen" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Oefeningen</h1>
+<ol type="1">
+<li>Open een terminal en typ <code>pwd</code>. In welke map sta je? Schrijf het pad op.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antwoord">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>/home/</code> gevolgd door je eigen gebruikersnaam. Dat is je thuismap, en daar begin je altijd.</p>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Wijs in <code>ls -l /etc</code> het commando, de optie en het argument aan.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antwoord">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>ls</code> is het commando, <code>-l</code> is de optie en <code>/etc</code> is het argument.</p>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Maak een map <code>iw6</code> in je thuismap, ga erin, maak daarin een map <code>oefeningen</code>, en controleer met <code>pwd</code> waar je staat.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antwoord">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre class="console"><code>leerling@penguin:~$ mkdir iw6
+leerling@penguin:~$ cd iw6
+leerling@penguin:~/iw6$ mkdir oefeningen
+leerling@penguin:~/iw6$ pwd
+/home/leerling/iw6</code></pre>
+<p><code>pwd</code> toont <code>/home/leerling/iw6</code>, want <code>mkdir</code> verplaatst je niet.</p>
+</div>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Je staat in <code>/home/leerling/iw6</code>. Schrijf twee verschillende commando’s die je naar je thuismap brengen.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antwoord">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>cd ..</code> gaat één stap omhoog, en dat is hier je thuismap. <code>cd</code> zonder argument doet hetzelfde, en <code>cd ~</code> en <code>cd /home/leerling</code> eveneens.</p>
+</div>
+</div>
+</div>
+<ol start="5" type="1">
+<li>Schrijf in je map <code>oefeningen</code> een bestand <code>oefening1.py</code> dat <code>Hallo</code> toont, en voer het uit.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antwoord">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre class="console"><code>leerling@penguin:~/iw6$ micro oefeningen/oefening1.py
+leerling@penguin:~/iw6$ python3 oefeningen/oefening1.py
+Hallo</code></pre>
+<p>In micro typ je één regel, <code>print("Hallo")</code>, en je bewaart met <code>Ctrl-S</code> en sluit af met <code>Ctrl-Q</code>.</p>
+</div>
+</div>
+</div>
+<ol start="6" type="1">
+<li>Verwijder het sluitende haakje uit <code>oefening1.py</code> en voer het opnieuw uit. Vergelijk de foutmelding met die uit sectie 4. Wat is er anders, en waarom?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antwoord">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre class="console"><code>leerling@penguin:~/iw6$ python3 oefeningen/oefening1.py
+  File "/home/leerling/iw6/oefeningen/oefening1.py", line 1
+    print("Hallo"
+         ^
+SyntaxError: '(' was never closed</code></pre>
+<p>Er staat geen <code>Traceback</code> boven. Python leest een bestand eerst volledig na op schrijffouten, en pas als dat lukt voert hij het uit. Deze fout werd dus gevonden voor er iets uitgevoerd werd, en er is geen uitvoering om te tonen. De melding zegt wel precies wat er scheelt.</p>
+</div>
+</div>
+</div>
+<ol start="7" type="1">
+<li>Typ <code>cd ie</code> en druk op tab. Wat gebeurt er, en waarom?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antwoord">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Er gebeurt niets, want er is geen map die met <code>ie</code> begint. Tab kan enkel aanvullen wat bestaat, en dat maakt hem meteen een controle op typfouten.</p>
+</div>
+</div>
+</div>
+<ol start="8" type="1">
+<li>Teken de boom uit sectie 2 opnieuw, maar met jouw eigen mappen erin. Gebruik <code>ls</code> in je thuismap om te zien wat er staat.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antwoord">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Er is geen één juist antwoord. Je thuismap zit in <code>/home</code>, en wat jij zelf aanmaakte zit daarin.</p>
+</div>
+</div>
+</div>
+
+
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
+</section>
+
+</main> <!-- /main -->
+<script>
+// Copy buttons for quarto-live code blocks.
+//
+// Quarto renders its own code blocks server side, each with a copy button
+// already in the markup, and at load it constructs one ClipboardJS instance
+// bound to the selector ".code-copy-button". quarto-live works differently: it
+// ships each cell as base64 in a <script type="pyodide-N-contents"> tag and
+// builds the DOM for it in the browser, which happens after Quarto has already
+// written its markup. Those blocks therefore never carry a button.
+//
+// ClipboardJS was given a selector string rather than a list of elements, so it
+// delegates from the document and picks up anything matching that selector
+// later on. Inserting the same button markup is enough, and no second
+// ClipboardJS instance is needed.
+(() => {
+  const BUTTON = 'Copy to Clipboard';
+
+  const addButton = (block) => {
+    if (block.querySelector(':scope > .code-copy-button')) return;
+    if (!block.querySelector('code')) return;
+    // The button is position:absolute with right:0, so it needs a positioned
+    // block to sit in. Quarto's own blocks get that from its CSS, the ones
+    // quarto-live builds come out static and would fling the button into the
+    // right margin.
+    if (getComputedStyle(block).position === 'static') {
+      block.style.position = 'relative';
+    }
+    const button = document.createElement('button');
+    button.title = BUTTON;
+    button.className = 'code-copy-button';
+    button.innerHTML = '<i class="bi"></i>';
+    block.appendChild(button);
+  };
+
+  const scan = (root) => {
+    if (root.nodeType !== Node.ELEMENT_NODE) return;
+    if (root.matches('div.sourceCode')) addButton(root);
+    root.querySelectorAll('div.sourceCode').forEach(addButton);
+  };
+
+  scan(document.body);
+
+  new MutationObserver((records) => {
+    for (const record of records) {
+      for (const node of record.addedNodes) scan(node);
+    }
+  }).observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../python";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Gekopieerd!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Gekopieerd!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../python/lussen.html" class="pagination-link" aria-label="1.3 Herhaling">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">1.3 Herhaling</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../python/zelftoets.html" class="pagination-link" aria-label="Zelftoets">
+        <span class="nav-page-text">Zelftoets</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><img src="../assets/vp-logo.png" alt="Vita et Pax" height="22"> Vita et Pax · Schoten</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

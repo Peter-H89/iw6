@@ -1,0 +1,38 @@
+/* Front-page mark, opted into per page, never on a lesson page.
+
+   A lambda from CMU Serif Roman, the serif companion of the body font, drawn as
+   a path because the site ships CMU Bright only. Drawn as a mask rather than a
+   background image, so the colour comes from --bs-primary and one asset serves
+   both modes. */
+
+.lambda-mark {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;          /* never eat a click meant for the page */
+  background-color: var(--bs-primary, #536681);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%2228%20-696%20442%20706%22%3E%3Cg%20transform%3D%22scale%281%2C-1%29%22%3E%3Cpath%20d%3D%22M28%20657C28%20646%2035%20619%2066%20619C75%20619%2084%20621%2091%20621C180%20621%20222%20475%20222%20468C222%20464%20221%20458%20219%20451C105%20135%2029%2032%2029%2011C29%201%2041%200%2051%200H83C91%200%20100%200%20106%207C113%2015%20184%20153%20259%20352C333%20110%20379%20-10%20434%20-10C457%20-10%20470%209%20470%2028C470%2058%20442%2063%20432%2067C378%2090%20333%20190%20266%20418C233%20531%20192%20696%2081%20696C36%20696%2028%20672%2028%20657Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%2228%20-696%20442%20706%22%3E%3Cg%20transform%3D%22scale%281%2C-1%29%22%3E%3Cpath%20d%3D%22M28%20657C28%20646%2035%20619%2066%20619C75%20619%2084%20621%2091%20621C180%20621%20222%20475%20222%20468C222%20464%20221%20458%20219%20451C105%20135%2029%2032%2029%2011C29%201%2041%200%2051%200H83C91%200%20100%200%20106%207C113%2015%20184%20153%20259%20352C333%20110%20379%20-10%20434%20-10C457%20-10%20470%209%20470%2028C470%2058%20442%2063%20432%2067C378%2090%20333%20190%20266%20418C233%20531%20192%20696%2081%20696C36%20696%2028%20672%2028%20657Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  /* Off right and bleeding past the edge, so it frames rather than underlays. */
+  -webkit-mask-position: 88% 46%;
+          mask-position: 88% 46%;
+  -webkit-mask-size: auto 78vh;
+          mask-size: auto 78vh;
+  opacity: .05;
+}
+
+/* On a phone the glyph would sit across the text at this size. */
+@media (max-width: 600px) {
+  .lambda-mark {
+    -webkit-mask-size: auto 42vh;
+            mask-size: auto 42vh;
+    -webkit-mask-position: 92% 88%;
+            mask-position: 92% 88%;
+  }
+}
+
+/* No prefers-reduced-transparency guard. That setting is for transparency you
+   read THROUGH, and this sits behind the margin. A guard was tried and it just
+   hid the mark on any Mac with Reduce transparency on. */

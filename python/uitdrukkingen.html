@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl" xml:lang="nl"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1.1 Uitdrukkingen en functies – Informatica-wetenschappen 6</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../python/variabelen.html" rel="next">
+<link href="../assets/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d785a4aeb42aed41a920a3a11bbaa792.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-9dae2121ff359c9a3e35a0f349bb9a21.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d785a4aeb42aed41a920a3a11bbaa792.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Geen resultaten",
+    "search-matching-documents-text": "Gevonden documenten",
+    "search-copy-link-title": "Kopieer link om te zoeken",
+    "search-hide-matches-text": "Extra overeenkomsten verbergen",
+    "search-more-match-text": "meer overeenkomst in dit document",
+    "search-more-matches-text": "meer overeenkomsten in dit document",
+    "search-clear-button-title": "Wissen",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuleren",
+    "search-submit-button-title": "Verzenden",
+    "search-label": "Zoeken"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<meta name="robots" content="noindex, nofollow">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/vp-logo.png" alt="" class="navbar-logo light-content">
+    <img src="../assets/vp-logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Informatica-wetenschappen 6</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Zoeken"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Schakel navigatie" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../voorwoord.html"> 
+<span class="menu-text">Voorwoord</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../python/uitdrukkingen.html" aria-current="page"> 
+<span class="menu-text">Leereenheid 1</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Schakel donkere modus"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Schakel zijbalknavigatie" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../python/uitdrukkingen.html">Python</a></li><li class="breadcrumb-item"><a href="../python/uitdrukkingen.html">1.1 Uitdrukkingen en functies</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Schakel zijbalknavigatie" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Schakel sectie">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/uitdrukkingen.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">1.1 Uitdrukkingen en functies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/variabelen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.2 Variabelen en types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/lussen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.3 Herhaling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/terminal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.4 Werken in de terminal</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/zelftoets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Zelftoets</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Op deze pagina</h2>
+   
+  <ul>
+  <li><a href="#een-uitdrukking-en-haar-waarde" id="toc-een-uitdrukking-en-haar-waarde" class="nav-link active" data-scroll-target="#een-uitdrukking-en-haar-waarde"><span class="header-section-number">1</span> Een uitdrukking en haar waarde</a></li>
+  <li><a href="#ingebouwde-functies" id="toc-ingebouwde-functies" class="nav-link" data-scroll-target="#ingebouwde-functies"><span class="header-section-number">2</span> Ingebouwde functies</a></li>
+  <li><a href="#zelf-een-functie-maken" id="toc-zelf-een-functie-maken" class="nav-link" data-scroll-target="#zelf-een-functie-maken"><span class="header-section-number">3</span> Zelf een functie maken</a></li>
+  <li><a href="#tonen-versus-teruggeven" id="toc-tonen-versus-teruggeven" class="nav-link" data-scroll-target="#tonen-versus-teruggeven"><span class="header-section-number">4</span> Tonen versus teruggeven</a></li>
+  <li><a href="#namen-blokken-en-commentaar" id="toc-namen-blokken-en-commentaar" class="nav-link" data-scroll-target="#namen-blokken-en-commentaar"><span class="header-section-number">5</span> Namen, blokken en commentaar</a></li>
+  <li><a href="#conclusie" id="toc-conclusie" class="nav-link" data-scroll-target="#conclusie"><span class="header-section-number">6</span> Conclusie</a></li>
+  <li><a href="#begrippen" id="toc-begrippen" class="nav-link" data-scroll-target="#begrippen"><span class="header-section-number">7</span> Begrippen</a></li>
+  <li><a href="#oefeningen" id="toc-oefeningen" class="nav-link" data-scroll-target="#oefeningen"><span class="header-section-number">8</span> Oefeningen</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../python/uitdrukkingen.html">Python</a></li><li class="breadcrumb-item"><a href="../python/uitdrukkingen.html">1.1 Uitdrukkingen en functies</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">1.1 Uitdrukkingen en functies</h1>
+<p class="subtitle lead">Wat Python uitrekent, en hoe je er zelf iets aan toevoegt</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled" title="Leerdoelen">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Opmerking</span>Leerdoelen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Na deze les kan je:</p>
+<ul>
+<li>voorspellen welke waarde een uitdrukking heeft</li>
+<li>een ingebouwde functie aanroepen en haar argumenten aanwijzen</li>
+<li>zelf een functie schrijven met <code>def</code> en <code>return</code></li>
+<li>uitleggen waarom <code>print</code> en <code>return</code> niet hetzelfde zijn</li>
+<li>de regels die Python stelt aan namen, indentatie en commentaar toepassen</li>
+</ul>
+</div>
+</div>
+<p>In deze les schrijf je je eerste Pythoncode. Een computer doet uit zichzelf niets. Voor elke taak is er een <strong>programma</strong> nodig, dat bestaat uit blokken met instructies.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Belangrijk">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Belangrijk</span>Belangrijk
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Instructies worden van boven naar beneden uitgevoerd en regel per regel.</li>
+<li>Uitdrukkingen met haakjes worden in Python <em>van binnen naar buiten</em> berekend.</li>
+<li>Een eenvoudig programma doet altijd <em>één</em> bewerking tegelijk.</li>
+</ul>
+</div>
+</div>
+<p>We beginnen bij wat de waarde is van een uitdrukking en eindigen bij functies die je zelf schrijft. Waarden bijhouden onder een naam komt volgende les. Experimenteer gerust met de code in de cellen.</p>
+<section id="een-uitdrukking-en-haar-waarde" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Een uitdrukking en haar waarde</h1>
+<p>Een <strong>uitdrukking</strong> is een stukje code met een waarde. <code>3 + 4</code> is een uitdrukking, en haar waarde is <code>7</code>. Wiskundige bewerkingen verlopen zoals je ze kent (op een aantal randgevallen na). Merk op dat sommige bewerkingen andere tekens gebruiken dan je gewend bent.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>bewerking</th>
+<th>teken</th>
+<th>voorbeeld</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>optellen</td>
+<td><code>+</code></td>
+<td><code>12 + 5</code> geeft <code>17</code></td>
+</tr>
+<tr class="even">
+<td>aftrekken</td>
+<td><code>-</code></td>
+<td><code>12 - 5</code> geeft <code>7</code></td>
+</tr>
+<tr class="odd">
+<td>vermenigvuldigen</td>
+<td><code>*</code></td>
+<td><code>12 * 5</code> geeft <code>60</code></td>
+</tr>
+<tr class="even">
+<td>delen</td>
+<td><code>/</code></td>
+<td><code>12 / 5</code> geeft <code>2.4</code></td>
+</tr>
+<tr class="odd">
+<td>gehele deling</td>
+<td><code>//</code></td>
+<td><code>12 // 5</code> geeft <code>2</code></td>
+</tr>
+<tr class="even">
+<td>rest</td>
+<td><code>%</code></td>
+<td><code>12 % 5</code> geeft <code>2</code></td>
+</tr>
+<tr class="odd">
+<td>macht</td>
+<td><code>**</code></td>
+<td><code>12 ** 2</code> geeft <code>144</code></td>
+</tr>
+</tbody>
+</table>
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiIyB2ZXJhbmRlciBkZSBiZXdlcmtpbmcgbmFhciBrZXV6ZVxuIyBCZWRlbmsgZW5rZWxlIHZlcnNjaGlsbGVuIG1ldCBkZSBUSTg0XG4yICsgMyAqIDQifQ==
+</script>
+</div>
+</section>
+<section id="ingebouwde-functies" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Ingebouwde functies</h1>
+<p>Python heeft ingebouwde functies die altijd beschikbaar zijn. Een functie gebruiken heet ze <strong>aanroepen</strong>: je schrijft haar naam, gevolgd door de <strong>argumenten</strong> tussen haakjes. Zo geeft <code>abs(-7)</code> het getal <code>7</code>, <code>max(3, 9)</code> het getal <code>9</code>, <code>round(2.71)</code> het getal <code>3</code>, en <code>len("informatica")</code> het aantal tekens <code>11</code>.</p>
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicm91bmQoMi43MSkifQ==
+</script>
+</div>
+<p>De schrijfwijze van functies in Python is als volgt:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>wiskunde</th>
+<th>Python</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(f(x)\)</span></td>
+<td><code>f(x)</code></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(f(x, y)\)</span></td>
+<td><code>f(x, y)</code></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(f(g(x))\)</span></td>
+<td><code>f(g(x))</code></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(2 f(x)\)</span></td>
+<td><code>2 * f(x)</code></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(f(x) \, g(y)\)</span></td>
+<td><code>f(x) * g(y)</code></td>
+</tr>
+</tbody>
+</table>
+<p>De eerste drie regels zijn identiek. Het verschil zit in de laatste twee: bij Python moet je altijd expliciet het maalteken schrijven. Wie <code>2f(x)</code> of <code>2(x + 1)</code> schrijft, krijgt een foutmelding.</p>
+</section>
+<section id="zelf-een-functie-maken" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Zelf een functie maken</h1>
+<p>Stel dat je op tien plaatsen in een programma dezelfde berekening schrijft. Dan moet je een aanpassing tien keer opnieuw doen. Een <strong>functie</strong> legt een gewenste berekening één keer vast onder een naam. Vervolgens kan je die functie onbeperkt hergebruiken door ze aan te roepen met haar naam en argumenten. Moet je toch nog iets aan de berekening aanpassen, dan hoeft dat meestal maar op één plaats, namelijk in de functiedefinitie.</p>
+<p>Dat het woord hetzelfde is als in de wiskunde, is geen toeval. Wat je daar schrijft als</p>
+<p><span class="math display">\[
+f : \mathbb{R} \to \mathbb{R} : x \mapsto x^2
+\]</span></p>
+<p>schrijf je in Python bijvoorbeeld zo.</p>
+<div>
+<div id="pyodide-3" class="exercise-cell">
+
+</div>
+<script type="pyodide-3-contents">
+eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjpmYWxzZX0sImNvZGUiOiJkZWYgZih4KTpcbiAgICByZXR1cm4geCAqIHgifQ==
+</script>
+</div>
+<p>Laten we deze functie meteen een duidelijkere naam geven.</p>
+<div>
+<div id="pyodide-4" class="exercise-cell">
+
+</div>
+<script type="pyodide-4-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOnRydWUsImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlfSwiY29kZSI6ImRlZiBrd2FkcmFhdCh4KTpcbiAgICByZXR1cm4geCAqIHgifQ==
+</script>
+</div>
+<p>Alles wat geïndenteerd onder de <code>def</code>-regel staat, vormt het <strong>lichaam</strong>. Achter <code>return</code> staat het <strong>resultaat</strong>, namelijk wat de functie <strong>teruggeeft</strong>.</p>
+<p>De <strong>parameter</strong> <code>x</code> is de naam waaronder de functie haar invoer kent en de naam die je gebruikt in de functiedefinitie. Aanroepen gebeurt door substitutie van de parameter door een argument, precies zoals je bij <span class="math inline">\(f(3)\)</span> de <span class="math inline">\(x\)</span> door <span class="math inline">\(3\)</span> vervangt. Bij <code>kwadraat(3)</code> komt overal waar <code>x</code> staat het getal <code>3</code>, waardoor <code>3 * 3</code> berekend wordt en er <code>9</code> wordt teruggegeven.</p>
+<div>
+<div id="pyodide-5" class="exercise-cell">
+
+</div>
+<script type="pyodide-5-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoia3dhZHJhYXQoMykifQ==
+</script>
+</div>
+<p>Een aanroep mag in een andere aanroep staan, net zoals <span class="math inline">\(f(f(x))\)</span>, en dan is de binnenste eerst aan de beurt om uit te rekenen. Bij <code>kwadraat(kwadraat(3))</code> levert de binnenste aanroep <code>9</code> op, waarna <code>kwadraat(9)</code> het antwoord <code>81</code> geeft.</p>
+<div>
+<div id="pyodide-6" class="exercise-cell">
+
+</div>
+<script type="pyodide-6-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoia3dhZHJhYXQoa3dhZHJhYXQoMykpIn0=
+</script>
+</div>
+<p>Een functiedefinitie kan naast ingebouwde functies ook je eigen functies bevatten. <code>kubiek(3)</code> geeft <code>27</code> als antwoord.</p>
+<div>
+<div id="pyodide-7" class="exercise-cell">
+
+</div>
+<script type="pyodide-7-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGVmIGt1Ymllayh4KTpcbiAgICByZXR1cm4ga3dhZHJhYXQoeCkgKiB4XG5cbmt1YmllaygzKSJ9
+</script>
+</div>
+</section>
+<section id="tonen-versus-teruggeven" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Tonen versus teruggeven</h1>
+<p>In het vorige onderdeel werkte <code>kwadraat(kwadraat(3))</code>, omdat de binnenste aanroep het getal <code>9</code> aflevert op de plaats waar ze staat. Die <code>9</code> kan dan worden gebruikt als argument voor de buitenste <code>kwadraat</code>.</p>
+<p>Vervang je <code>return</code> door <code>print</code>, dan <strong>toont</strong> de functie het getal enkel op het scherm en komt er op de plaats van de aanroep niets terecht.</p>
+<div class="columns">
+<div class="column" style="width:48%;">
+<div>
+<div id="pyodide-8" class="exercise-cell">
+
+</div>
+<script type="pyodide-8-contents">
+eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjpmYWxzZX0sImNvZGUiOiJkZWYga3dhZHJhYXQoeCk6XG4gICAgcmV0dXJuIHggKiB4In0=
+</script>
+</div>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:48%;">
+<div>
+<div id="pyodide-9" class="exercise-cell">
+
+</div>
+<script type="pyodide-9-contents">
+eyJhdHRyIjp7ImF1dG9ydW4iOnRydWUsImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlfSwiY29kZSI6ImRlZiB0b29uX2t3YWRyYWF0KHgpOlxuICAgIHByaW50KHggKiB4KSJ9
+</script>
+</div>
+</div>
+</div>
+<p>Roep je ze in een codecel los aan, dan verschijnt in beide gevallen <code>9</code>. Het verschil blijkt zodra je met het resultaat verder wil. De cel hieronder bevat twee <code>print</code>-regels: hoeveel regels verschijnen er volgens jou, en wat staat erop?</p>
+<div>
+<div id="pyodide-10" class="exercise-cell">
+
+</div>
+<script type="pyodide-10-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicHJpbnQoa3dhZHJhYXQoMykgKyAxKVxucHJpbnQodG9vbl9rd2FkcmFhdCgzKSArIDEpIn0=
+</script>
+</div>
+<p>De eerste regel levert <code>10</code>. <code>kwadraat(3)</code> geeft het getal <code>9</code> terug op de plaats van de aanroep, er komt <code>1</code> bij, en <code>print</code> toont de som.</p>
+<p>De tweede regel toont eerst <code>9</code> en loopt daarna vast. Python rekent het argument als eerste uit, dus <code>toon_kwadraat(3)</code> zet die <code>9</code> op het scherm met <code>print</code>, en geeft vervolgens niets terug. Een functie zonder <code>return</code> geeft <code>None</code> terug, de waarde die Python hanteert voor “hier is niets”. Bij <code>None</code> kan je niets optellen en dat staat er ook: <code>unsupported operand type(s) for +: 'NoneType' and 'int'</code>.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Opgelet">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Waarschuwing</span>Opgelet
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Gebruik <code>return</code> als het resultaat nodig is voor verdere stappen in de berekening en <code>print</code> enkel wanneer je een waarde wil zien, hetzij in een tussenstap ter controle, hetzij als resultaat van de berekening.</p>
+</div>
+</div>
+</section>
+<section id="namen-blokken-en-commentaar" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Namen, blokken en commentaar</h1>
+<div class="callout callout-style-default callout-important callout-titled" title="Belangrijk">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Belangrijk</span>Belangrijk
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Een naam in Python bestaat uit letters, cijfers en liggende streepjes, mag niet met een cijfer beginnen, en maakt onderscheid tussen hoofd- en kleine letters.</p>
+</div>
+</div>
+<p><code>Kwadraat</code> en <code>kwadraat</code> zijn dus twee verschillende namen. Kies beschrijvende namen, want <code>inhoud_kegel</code> vertelt een lezer meer dan <code>f</code>. De gewoonte is dat we namen met meer woorden in kleine letters schrijven met liggende streepjes ertussen, dus <code>aantal_leerlingen</code> en niet <code>AantalLeerlingen</code>.</p>
+<div class="terzijde">
+<p>De meest courante stijlen zijn kebab-case, snake_case en camelCase. In Python heeft men dus voor snake_case gekozen.</p>
+</div>
+<p>Een korte naam als <code>x</code> of <code>n</code> is bruikbaar voor een getal zonder verdere betekenis, zoals de parameter van een wiskundige functie.</p>
+<p>Een aantal woorden is voorbehouden aan de taal zelf en kan je niet als naam gebruiken. Je kent er al twee, <code>def</code> en <code>return</code>. Andere, zoals <code>if</code>, <code>else</code>, <code>while</code> en <code>import</code> volgen nog.</p>
+<p>Python bepaalt met <strong>indentatie</strong> wat bij een functie hoort. Alle regels die even ver geïndenteerd staan, vormen samen één <strong>blok</strong>. Verandert de indentatie, dan verandert de betekenis van je programma. De officiële Python stijlgids zegt vier spaties per niveau. Op kleine schermen kan twee spaties handiger zijn. Je kan in de meeste programmeeromgevingen de indentatie automatiseren.</p>
+<div>
+<div id="pyodide-11" class="exercise-cell">
+
+</div>
+<script type="pyodide-11-contents">
+eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjpmYWxzZX0sImNvZGUiOiJkZWYgYmVncm9ldChuYWFtKTpcbiAgICByZXR1cm4gXCJkYWcgXCIgKyBuYWFtICAgICAjIGhvb3J0IGJpaiBkZSBmdW5jdGllXG5iZWdyb2V0KFwiVG9tXCIpICAgICAgICAgICAgICAgIyBzdGFhdCBidWl0ZW4gZGUgZnVuY3RpZSJ9
+</script>
+</div>
+<p>Alles achter een hekje <code>#</code> is <strong>commentaar</strong>. Dit telt niet als code. Het dient om aan een lezer, jezelf inbegrepen, informatie te geven over de code.</p>
+</section>
+<section id="conclusie" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Conclusie</h1>
+<p>De kleinste bouwsteen van een programma is de uitdrukking, een stukje code met een waarde. Een functie geeft een naam aan een berekening die je wil hergebruiken: je roept ze aan met argumenten, ze geeft een waarde terug met <code>return</code>, en die waarde kan meteen dienen in een volgende aanroep. Het kan ook zijn dat een functie niets teruggeeft, bijvoorbeeld enkel iets toont met <code>print</code>. In dat geval geeft de functie <code>None</code> terug.</p>
+<p>Naamgeving in Python volgt vaste regels, bijvoorbeeld dat de naam van een functie wel cijfers mag bevatten, maar er niet mee mag starten. De structuur van Pythoncode heeft betekenis. Blokken bepalen met behulp van indentatie wat er bij elkaar hoort.</p>
+<p>Alles wat je tot hier schreef, wordt uitgerekend, teruggegeven en meteen vergeten. In de volgende les leer je een waarde bijhouden onder een naam. Pas door nieuwe functies te schrijven met oude en door waarden bij te houden, door te geven en te hergebruiken, kan een programma iets betekenisvols opbouwen.</p>
+</section>
+<section id="begrippen" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Begrippen</h1>
+<ul>
+<li><strong>programma</strong> (<em>program</em>): een voorschrift waarin precies vastligt wat er moet gebeuren.</li>
+<li><strong>uitdrukking</strong> (<em>expression</em>): een stukje code met een waarde, zoals <code>3 + 4</code>.</li>
+<li><strong>functie</strong> (<em>function</em>): een berekening die onder een naam vastligt en die je met argumenten aanroept.</li>
+<li><strong>aanroepen</strong> (<em>to call</em>): een functie gebruiken door haar naam te schrijven, gevolgd door de argumenten tussen haakjes.</li>
+<li><strong>parameter</strong> (<em>parameter</em>): de naam waaronder een functie haar invoer kent.</li>
+<li><strong>argument</strong> (<em>argument</em>): de waarde die je bij een aanroep meegeeft.</li>
+<li><strong>lichaam</strong> (<em>body</em>): alles wat geïndenteerd onder de <code>def</code>-regel staat en dus bij de functie hoort.</li>
+<li><strong>tonen</strong> (<em>to print</em>): een waarde op het scherm zetten met <code>print</code>, waar het programma zelf niets aan heeft.</li>
+<li><strong>teruggeven</strong> (<em>to return</em>): een waarde afleveren op de plaats van de aanroep, met <code>return</code>.</li>
+<li><strong>resultaat</strong> (<em>return value</em>): de waarde die zo afgeleverd wordt. Ook wel de <em>terugkeerwaarde</em> genoemd.</li>
+<li><strong><code>None</code></strong>: de waarde die Python teruggeeft wanneer er niets terug te geven valt. In een foutmelding heet het type ervan <code>NoneType</code>.</li>
+<li><strong>indentatie</strong> (<em>indentation</em>): de witruimte vooraan een regel, waarmee Python bepaalt wat bij elkaar hoort.</li>
+<li><strong>blok</strong> (<em>block</em>): alle regels die even ver geïndenteerd staan en samen één geheel vormen.</li>
+<li><strong>commentaar</strong> (<em>comment</em>): alles achter een <code>#</code>, dat Python overslaat.</li>
+</ul>
+</section>
+<section id="oefeningen" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Oefeningen</h1>
+<p>De functies die hierboven op deze pagina gemaakt zijn, staan hier nog klaar en hoef je niet opnieuw te schrijven. Wat je zelf in een oefening schrijft, blijft eveneens bestaan voor de oefeningen erna, zolang je de pagina niet herlaadt.</p>
+<ol type="1">
+<li><p>Voorspel wat Python doet, en probeer het daarna uit in de cel eronder.</p>
+<ol type="a">
+<li>Op je rekentoestel mag je het maalteken weglaten en <code>2(3 + 4)</code> schrijven. Wat doet Python met die regel?</li>
+<li>Op je rekentoestel schrijf je een macht met <code>^</code>. Wat verwacht je bij <code>2 ^ 3</code>, en wat krijg je?</li>
+<li>Je hebt 100 potloden en je stopt ze in dozen van 12. Welke uitdrukking geeft het aantal volle dozen, en welke het aantal potloden dat overblijft? En wat geeft <code>100 / 12</code>?</li>
+</ol>
+<div>
+<div id="pyodide-12" class="exercise-cell">
+
+</div>
+<script type="pyodide-12-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJleF9wcm9iZWVyY2VsIn0sImNvZGUiOiIjIFByb2JlZXIgaGllciBkZSBiZXdlcmtpbmdlbiB1aXQgdm9vciBqZSBoZXQgYW50d29vcmQgb3BlbnQuXG5fX19fX18ifQ==
+</script>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antwoord">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>a.</strong> <code>TypeError: 'int' object is not callable</code>. Python leest <code>2(3 + 4)</code> als een aanroep van <code>2</code>, net zoals <code>f(3 + 4)</code> een aanroep van <code>f</code> is. Het maalteken is verplicht, dus <code>2 * (3 + 4)</code>.</p>
+<p><strong>b.</strong> <code>1</code>, en geen foutmelding. Een macht schrijf je <code>2 ** 3</code>, en dat geeft <code>8</code>. Het teken <code>^</code> bestaat wel degelijk in Python en staat voor XOR, een bewerking op bits die niet bij deze les hoort. Ze staat hier enkel om te verklaren waarom Python geen foutmelding geeft. Geen foutmelding betekent dus niet dat er staat wat je bedoelde.</p>
+<p><strong>c.</strong> <code>100 // 12</code> geeft <code>8</code> volle dozen en <code>100 % 12</code> geeft <code>4</code> potloden die overblijven. <code>100 / 12</code> geeft <code>8.333333333333334</code>, want <code>/</code> levert altijd een kommagetal, ook bij <code>12 / 4</code>, dat <code>3.0</code> geeft en niet <code>3</code>.</p>
+</div>
+</div>
+</div></li>
+<li><p>Vul de functie hieronder aan.</p>
+<div>
+<div id="pyodide-13" class="exercise-cell">
+
+</div>
+<script type="pyodide-13-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJleF9nZW1pZGRlbGRlIn0sImNvZGUiOiJkZWYgZ2VtaWRkZWxkZShhLCBiKTpcbiAgICBfX19fX19cblxuZ2VtaWRkZWxkZSgzLCA0KSArIDEifQ==
+</script>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="ex_gemiddelde">
+<p>Tel de twee getallen op en deel door 2. Let op de haakjes, want <code>a + b / 2</code> deelt alleen <code>b</code>.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_gemiddelde">
+<div>
+<div id="pyodide-14" class="exercise-cell">
+
+</div>
+<script type="pyodide-14-contents">
+eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjpmYWxzZX0sImNvZGUiOiJkZWYgZ2VtaWRkZWxkZShhLCBiKTpcbiAgICByZXR1cm4gKGEgKyBiKSAvIDIifQ==
+</script>
+</div>
+</div></li>
+<li><p>Schrijf <code>schuine_zijde(a, b)</code>, die de lengte van de schuine zijde van een rechthoekige driehoek teruggeeft. Gebruik in plaats van een vierkantswortel voorlopig een rationale exponent. <span class="math inline">\(\sqrt{n}\)</span> wordt <code>n ** 0.5</code>. Zet er een commentaar bij die uitlegt wat <code>** 0.5</code> doet, want een lezer die dat niet weet, ziet enkel een macht staan.</p>
+<div>
+<div id="pyodide-15" class="exercise-cell">
+
+</div>
+<script type="pyodide-15-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJleF9zY2h1aW5lX3ppamRlIn0sImNvZGUiOiJfX19fX19cblxuc2NodWluZV96aWpkZSgzLCA0KSJ9
+</script>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="ex_schuine_zijde">
+<p>De stelling van Pythagoras geeft je het kwadraat van de schuine zijde. <code>kwadraat</code> staat van hierboven nog klaar, dus blijft enkel de wortel over.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_schuine_zijde">
+<p>Een commentaar zou kunnen zijn:</p>
+<div>
+<div id="pyodide-16" class="exercise-cell">
+
+</div>
+<script type="pyodide-16-contents">
+eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjpmYWxzZX0sImNvZGUiOiJkZWYgc2NodWluZV96aWpkZShhLCBiKTpcbiAgICByZXR1cm4gKGt3YWRyYWF0KGEpICsga3dhZHJhYXQoYikpICoqIDAuNSAgIyAqKiAwLjUgaXMgZGUgd29ydGVsIn0=
+</script>
+</div>
+<p>De bedoeling is dat ze iets toevoegt. <code># bereken de schuine zijde</code> herhaalt enkel de naam van de functie. Bij <code>** 0.5</code> valt er wel iets uit te leggen: <code>**</code> aanvaardt ook niet-gehele exponenten, en omdat <span class="math inline">\(n^{1/2} = \sqrt{n}\)</span> levert <code>n ** 0.5</code> dus de vierkantswortel.</p>
+</div></li>
+<li><p>Is het mogelijk <code>gemiddelde3(a, b, c)</code> te schrijven door <code>gemiddelde</code> twee keer te gebruiken? Heb je oefening 2 uitgevoerd, dan staat <code>gemiddelde</code> nog klaar. Controleer je functie met <code>0</code>, <code>0</code> en <code>6</code>.</p>
+<div>
+<div id="pyodide-17" class="exercise-cell">
+
+</div>
+<script type="pyodide-17-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJleF9nZW1pZGRlbGRlMyJ9LCJjb2RlIjoiX19fX19fXG5cbmdlbWlkZGVsZGUzKDAsIDAsIDYpIn0=
+</script>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="ex_gemiddelde3">
+<p>Reken eerst zelf uit wat het gemiddelde van <code>0</code>, <code>0</code> en <code>6</code> is. Laat Python daarna <code>gemiddelde(gemiddelde(0, 0), 6)</code> uitrekenen, en vergelijk de twee.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_gemiddelde3">
+<div>
+<div id="pyodide-18" class="exercise-cell">
+
+</div>
+<script type="pyodide-18-contents">
+eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjpmYWxzZX0sImNvZGUiOiJkZWYgZ2VtaWRkZWxkZTMoYSwgYiwgYyk6XG4gICAgcmV0dXJuIChhICsgYiArIGMpIC8gMyJ9
+</script>
+</div>
+<p>Hergebruik werkt niet. <code>gemiddelde(gemiddelde(a, b), c)</code> geeft <code>3.0</code> bij <code>0</code>, <code>0</code> en <code>6</code>, terwijl het gemiddelde <code>2.0</code> is: <code>a</code> en <code>b</code> wegen dan elk een kwart en <code>c</code> de helft.</p>
+</div></li>
+<li><p>Accepteert Python deze namen? Antwoord telkens met ja of nee, en zeg bij een nee wat er misloopt.</p>
+<ol type="a">
+<li><code>aantal_leerlingen</code></li>
+<li><code>2de_poging</code></li>
+<li><code>lengte2</code></li>
+<li><code>gemiddelde-score</code></li>
+<li><code>return</code></li>
+<li><code>AantalLeerlingen</code></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antwoord">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>a.</strong> Ja, en het is meteen de gewoonte: kleine letters met liggende streepjes ertussen.</p>
+<p><strong>b.</strong> Nee. Een naam mag niet met een cijfer beginnen. Python begint <code>2de</code> te lezen als een getal en meldt <code>invalid decimal literal</code>.</p>
+<p><strong>c.</strong> Ja. Een cijfer mag wel, zolang het niet vooraan staat.</p>
+<p><strong>d.</strong> Nee. Een streepje is geen letter, cijfer of liggend streepje. Vervelender is wat Python er wel van maakt: het leest <code>gemiddelde-score</code> als de aftrekking <code>gemiddelde - score</code>. Bestaan die twee namen, dan krijg je geen foutmelding maar gewoon een ander antwoord dan je bedoelde.</p>
+<p><strong>e.</strong> Nee. <code>return</code> is voorbehouden aan de taal zelf.</p>
+<p><strong>f.</strong> Ja, dit mag. Het is alleen niet de gewoonte in Python, waar je <code>aantal_leerlingen</code> schrijft. Een regel van de taal en een gewoonte onder programmeurs zijn twee verschillende dingen.</p>
+</div>
+</div>
+</div></li>
+<li><p>Hierboven op deze pagina staat <code>kwadraat</code> nog klaar. Voorspel wat de cel hieronder doet, en voer ze daarna uit.</p>
+<div>
+<div id="pyodide-19" class="exercise-cell">
+
+</div>
+<script type="pyodide-19-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiS3dhZHJhYXQoMykifQ==
+</script>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antwoord">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>NameError: name 'Kwadraat' is not defined</code>. <code>Kwadraat</code> en <code>kwadraat</code> zijn voor Python twee verschillende namen. Een hoofdletter is dus geen opmaak maar een deel van de naam.</p>
+</div>
+</div>
+</div></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled" title="Verdieping">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Opmerking</span>Verdieping
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol start="7" type="1">
+<li><p>Schrijf <code>middelste(a, b, c)</code>, die van drie getallen het middelste teruggeeft, dus dat wat niet het grootste en niet het kleinste is. Bij <code>3</code>, <code>9</code> en <code>5</code> is dat <code>5</code>.</p>
+<ol type="a">
+<li><p>Gebruik alleen <code>min</code>, <code>max</code>, <code>+</code> en <code>-</code>.</p>
+<div>
+<div id="pyodide-20" class="exercise-cell">
+
+</div>
+<script type="pyodide-20-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJleF9taWRkZWxzdGUifSwiY29kZSI6Il9fX19fX1xuXG5taWRkZWxzdGUoMywgOSwgNSkifQ==
+</script>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="ex_middelste">
+<p>Gebruik de som van de getallen, <code>min(a, b, c)</code> en <code>max(a, b, c)</code>.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_middelste">
+<div>
+<div id="pyodide-21" class="exercise-cell">
+
+</div>
+<script type="pyodide-21-contents">
+eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjpmYWxzZX0sImNvZGUiOiJkZWYgbWlkZGVsc3RlKGEsIGIsIGMpOlxuICAgIHJldHVybiBhICsgYiArIGMgLSBtYXgoYSwgYiwgYykgLSBtaW4oYSwgYiwgYykifQ==
+</script>
+</div>
+<p>Van de drie getallen ken je het grootste en het kleinste al.&nbsp;Trek je die twee van de som af, dan blijft het middelste over. Dat klopt ook wanneer er twee even groot zijn.</p>
+</div></li>
+<li><p>Gebruik nu alleen <code>min</code> en <code>max</code>, dus zonder optellen of aftrekken.</p>
+<div>
+<div id="pyodide-22" class="exercise-cell">
+
+</div>
+<script type="pyodide-22-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImVudmlyIjoiZ2xvYmFsIiwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJleF9taWRkZWxzdGVfbWlubWF4In0sImNvZGUiOiJfX19fX19cblxubWlkZGVsc3RlKDMsIDksIDUpIn0=
+</script>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="ex_middelste_minmax">
+<p>Uit <code>a</code>, <code>b</code> en <code>c</code> kan je drie paren vormen. Neem van elk paar het grootste, en vergelijk de drie uitkomsten met elkaar.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_middelste_minmax">
+<div>
+<div id="pyodide-23" class="exercise-cell">
+
+</div>
+<script type="pyodide-23-contents">
+eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjpmYWxzZX0sImNvZGUiOiJkZWYgbWlkZGVsc3RlKGEsIGIsIGMpOlxuICAgIHJldHVybiBtaW4obWF4KGEsIGIpLCBtYXgoYiwgYyksIG1heChhLCBjKSkifQ==
+</script>
+</div>
+<p>We weten de verhoudingen niet tussen de getallen, maar elk getal zit in twee paren. Twee tussenresultaten van <code>max</code> zijn bijgevolg beide het grootste getal. Het derde paar bestaat uit de twee kleinste en levert met <code>max</code> dus het middelste getal als tussenresultaat. Als we van de drie tussenresultaten dan het <code>min</code> nemen, bekomen we altijd het middelste getal. Met <code>min</code> en <code>max</code> van plaats gewisseld werkt het net zo goed: <code>max(min(a, b), min(b, c), min(a, c))</code>. Er zijn ook nog andere oplossingen mogelijk.</p>
+</div></li>
+</ol></li>
+</ol>
+</div>
+</div>
+</div>
+
+
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIl19fQ==
+</script>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTIzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6Il9weW9kaWRlX3ZhbHVlXzIzID0ge1xuICBjb25zdCB7IGhpZ2hsaWdodFB5dGhvbiwgYjY0RGVjb2RlfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIzLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgLy8gRGVmYXVsdCBldmFsdWF0aW9uIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oe1xuICAgIGlkOiBcInB5b2RpZGUtMjMtY29udGVudHNcIixcbiAgICBlY2hvOiB0cnVlLFxuICAgIG91dHB1dDogdHJ1ZVxuICB9LCBibG9jay5hdHRyKTtcblxuICAvLyBFdmFsdWF0ZSB0aGUgcHJvdmlkZWQgUHl0aG9uIGNvZGVcbiAgY29uc3QgcmVzdWx0ID0gcHlvZGlkZU9qcy5wcm9jZXNzKHtjb2RlOiBibG9jay5jb2RlLCBvcHRpb25zfSwge30pO1xuXG4gIC8vIEVhcmx5IHlpZWxkIHdoaWxlIHdlIHdhaXQgZm9yIHRoZSBmaXJzdCBldmFsdWF0aW9uIGFuZCByZW5kZXJcbiAgaWYgKG9wdGlvbnMub3V0cHV0ICYmICEoXCIyM1wiIGluIHB5b2RpZGVPanMucmVuZGVyZWRPanMpKSB7XG4gICAgY29uc3QgY29udGFpbmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcbiAgICBjb25zdCBzcGlubmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcblxuICAgIGlmIChvcHRpb25zLmVjaG8pIHtcbiAgICAgIC8vIFNob3cgb3V0cHV0IGFzIGhpZ2hsaWdodGVkIHNvdXJjZVxuICAgICAgY29uc3QgcHJlRWxlbSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJwcmVcIik7XG4gICAgICBjb250YWluZXIuY2xhc3NOYW1lID0gXCJzb3VyY2VDb2RlXCI7XG4gICAgICBwcmVFbGVtLmNsYXNzTmFtZSA9IFwic291cmNlQ29kZSBweXRob25cIjtcbiAgICAgIHByZUVsZW0uYXBwZW5kQ2hpbGQoaGlnaGxpZ2h0UHl0aG9uKGJsb2NrLmNvZGUpKTtcbiAgICAgIHNwaW5uZXIuY2xhc3NOYW1lID0gXCJzcGlubmVyLWdyb3cgc3Bpbm5lci1ncm93LXNtIG0tMiBwb3NpdGlvbi1hYnNvbHV0ZSB0b3AtMCBlbmQtMFwiO1xuICAgICAgcHJlRWxlbS5hcHBlbmRDaGlsZChzcGlubmVyKTtcbiAgICAgIGNvbnRhaW5lci5hcHBlbmRDaGlsZChwcmVFbGVtKTtcbiAgICB9IGVsc2Uge1xuICAgICAgc3Bpbm5lci5jbGFzc05hbWUgPSBcInNwaW5uZXItYm9yZGVyIHNwaW5uZXItYm9yZGVyLXNtXCI7XG4gICAgICBjb250YWluZXIuYXBwZW5kQ2hpbGQoc3Bpbm5lcik7XG4gICAgfVxuXG4gICAgeWllbGQgY29udGFpbmVyO1xuICB9XG5cbiAgcHlvZGlkZU9qcy5yZW5kZXJlZE9qc1tcIjIzXCJdID0gdHJ1ZTtcbiAgeWllbGQgYXdhaXQgcmVzdWx0O1xufVxuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtMjIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yMiA9IHtcbiAgY29uc3QgeyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IsIGI2NERlY29kZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInB5b2RpZGUtMjItY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwicHlvZGlkZS0yMi1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IocHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF9weW9kaWRlX3ZhbHVlXzIyID0gcHlvZGlkZU9qcy5wcm9jZXNzKF9weW9kaWRlX2VkaXRvcl8yMiwge30pO1xuX3B5b2RpZGVfZmVlZGJhY2tfMjIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBQeW9kaWRlR3JhZGVyKF9weW9kaWRlX3ZhbHVlXzIyLmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIxIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6Il9weW9kaWRlX3ZhbHVlXzIxID0ge1xuICBjb25zdCB7IGhpZ2hsaWdodFB5dGhvbiwgYjY0RGVjb2RlfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTIxLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgLy8gRGVmYXVsdCBldmFsdWF0aW9uIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oe1xuICAgIGlkOiBcInB5b2RpZGUtMjEtY29udGVudHNcIixcbiAgICBlY2hvOiB0cnVlLFxuICAgIG91dHB1dDogdHJ1ZVxuICB9LCBibG9jay5hdHRyKTtcblxuICAvLyBFdmFsdWF0ZSB0aGUgcHJvdmlkZWQgUHl0aG9uIGNvZGVcbiAgY29uc3QgcmVzdWx0ID0gcHlvZGlkZU9qcy5wcm9jZXNzKHtjb2RlOiBibG9jay5jb2RlLCBvcHRpb25zfSwge30pO1xuXG4gIC8vIEVhcmx5IHlpZWxkIHdoaWxlIHdlIHdhaXQgZm9yIHRoZSBmaXJzdCBldmFsdWF0aW9uIGFuZCByZW5kZXJcbiAgaWYgKG9wdGlvbnMub3V0cHV0ICYmICEoXCIyMVwiIGluIHB5b2RpZGVPanMucmVuZGVyZWRPanMpKSB7XG4gICAgY29uc3QgY29udGFpbmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcbiAgICBjb25zdCBzcGlubmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcblxuICAgIGlmIChvcHRpb25zLmVjaG8pIHtcbiAgICAgIC8vIFNob3cgb3V0cHV0IGFzIGhpZ2hsaWdodGVkIHNvdXJjZVxuICAgICAgY29uc3QgcHJlRWxlbSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJwcmVcIik7XG4gICAgICBjb250YWluZXIuY2xhc3NOYW1lID0gXCJzb3VyY2VDb2RlXCI7XG4gICAgICBwcmVFbGVtLmNsYXNzTmFtZSA9IFwic291cmNlQ29kZSBweXRob25cIjtcbiAgICAgIHByZUVsZW0uYXBwZW5kQ2hpbGQoaGlnaGxpZ2h0UHl0aG9uKGJsb2NrLmNvZGUpKTtcbiAgICAgIHNwaW5uZXIuY2xhc3NOYW1lID0gXCJzcGlubmVyLWdyb3cgc3Bpbm5lci1ncm93LXNtIG0tMiBwb3NpdGlvbi1hYnNvbHV0ZSB0b3AtMCBlbmQtMFwiO1xuICAgICAgcHJlRWxlbS5hcHBlbmRDaGlsZChzcGlubmVyKTtcbiAgICAgIGNvbnRhaW5lci5hcHBlbmRDaGlsZChwcmVFbGVtKTtcbiAgICB9IGVsc2Uge1xuICAgICAgc3Bpbm5lci5jbGFzc05hbWUgPSBcInNwaW5uZXItYm9yZGVyIHNwaW5uZXItYm9yZGVyLXNtXCI7XG4gICAgICBjb250YWluZXIuYXBwZW5kQ2hpbGQoc3Bpbm5lcik7XG4gICAgfVxuXG4gICAgeWllbGQgY29udGFpbmVyO1xuICB9XG5cbiAgcHlvZGlkZU9qcy5yZW5kZXJlZE9qc1tcIjIxXCJdID0gdHJ1ZTtcbiAgeWllbGQgYXdhaXQgcmVzdWx0O1xufVxuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtMjAiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yMCA9IHtcbiAgY29uc3QgeyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IsIGI2NERlY29kZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInB5b2RpZGUtMjAtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwicHlvZGlkZS0yMC1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IocHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF9weW9kaWRlX3ZhbHVlXzIwID0gcHlvZGlkZU9qcy5wcm9jZXNzKF9weW9kaWRlX2VkaXRvcl8yMCwge30pO1xuX3B5b2RpZGVfZmVlZGJhY2tfMjAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBQeW9kaWRlR3JhZGVyKF9weW9kaWRlX3ZhbHVlXzIwLmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE5IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTkgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE5LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTktY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xOSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE4IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6Il9weW9kaWRlX3ZhbHVlXzE4ID0ge1xuICBjb25zdCB7IGhpZ2hsaWdodFB5dGhvbiwgYjY0RGVjb2RlfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE4LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgLy8gRGVmYXVsdCBldmFsdWF0aW9uIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oe1xuICAgIGlkOiBcInB5b2RpZGUtMTgtY29udGVudHNcIixcbiAgICBlY2hvOiB0cnVlLFxuICAgIG91dHB1dDogdHJ1ZVxuICB9LCBibG9jay5hdHRyKTtcblxuICAvLyBFdmFsdWF0ZSB0aGUgcHJvdmlkZWQgUHl0aG9uIGNvZGVcbiAgY29uc3QgcmVzdWx0ID0gcHlvZGlkZU9qcy5wcm9jZXNzKHtjb2RlOiBibG9jay5jb2RlLCBvcHRpb25zfSwge30pO1xuXG4gIC8vIEVhcmx5IHlpZWxkIHdoaWxlIHdlIHdhaXQgZm9yIHRoZSBmaXJzdCBldmFsdWF0aW9uIGFuZCByZW5kZXJcbiAgaWYgKG9wdGlvbnMub3V0cHV0ICYmICEoXCIxOFwiIGluIHB5b2RpZGVPanMucmVuZGVyZWRPanMpKSB7XG4gICAgY29uc3QgY29udGFpbmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcbiAgICBjb25zdCBzcGlubmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcblxuICAgIGlmIChvcHRpb25zLmVjaG8pIHtcbiAgICAgIC8vIFNob3cgb3V0cHV0IGFzIGhpZ2hsaWdodGVkIHNvdXJjZVxuICAgICAgY29uc3QgcHJlRWxlbSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJwcmVcIik7XG4gICAgICBjb250YWluZXIuY2xhc3NOYW1lID0gXCJzb3VyY2VDb2RlXCI7XG4gICAgICBwcmVFbGVtLmNsYXNzTmFtZSA9IFwic291cmNlQ29kZSBweXRob25cIjtcbiAgICAgIHByZUVsZW0uYXBwZW5kQ2hpbGQoaGlnaGxpZ2h0UHl0aG9uKGJsb2NrLmNvZGUpKTtcbiAgICAgIHNwaW5uZXIuY2xhc3NOYW1lID0gXCJzcGlubmVyLWdyb3cgc3Bpbm5lci1ncm93LXNtIG0tMiBwb3NpdGlvbi1hYnNvbHV0ZSB0b3AtMCBlbmQtMFwiO1xuICAgICAgcHJlRWxlbS5hcHBlbmRDaGlsZChzcGlubmVyKTtcbiAgICAgIGNvbnRhaW5lci5hcHBlbmRDaGlsZChwcmVFbGVtKTtcbiAgICB9IGVsc2Uge1xuICAgICAgc3Bpbm5lci5jbGFzc05hbWUgPSBcInNwaW5uZXItYm9yZGVyIHNwaW5uZXItYm9yZGVyLXNtXCI7XG4gICAgICBjb250YWluZXIuYXBwZW5kQ2hpbGQoc3Bpbm5lcik7XG4gICAgfVxuXG4gICAgeWllbGQgY29udGFpbmVyO1xuICB9XG5cbiAgcHlvZGlkZU9qcy5yZW5kZXJlZE9qc1tcIjE4XCJdID0gdHJ1ZTtcbiAgeWllbGQgYXdhaXQgcmVzdWx0O1xufVxuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtMTciLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xNyA9IHtcbiAgY29uc3QgeyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IsIGI2NERlY29kZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInB5b2RpZGUtMTctY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwicHlvZGlkZS0xNy1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IocHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF9weW9kaWRlX3ZhbHVlXzE3ID0gcHlvZGlkZU9qcy5wcm9jZXNzKF9weW9kaWRlX2VkaXRvcl8xNywge30pO1xuX3B5b2RpZGVfZmVlZGJhY2tfMTcgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBQeW9kaWRlR3JhZGVyKF9weW9kaWRlX3ZhbHVlXzE3LmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE2IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6Il9weW9kaWRlX3ZhbHVlXzE2ID0ge1xuICBjb25zdCB7IGhpZ2hsaWdodFB5dGhvbiwgYjY0RGVjb2RlfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE2LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgLy8gRGVmYXVsdCBldmFsdWF0aW9uIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oe1xuICAgIGlkOiBcInB5b2RpZGUtMTYtY29udGVudHNcIixcbiAgICBlY2hvOiB0cnVlLFxuICAgIG91dHB1dDogdHJ1ZVxuICB9LCBibG9jay5hdHRyKTtcblxuICAvLyBFdmFsdWF0ZSB0aGUgcHJvdmlkZWQgUHl0aG9uIGNvZGVcbiAgY29uc3QgcmVzdWx0ID0gcHlvZGlkZU9qcy5wcm9jZXNzKHtjb2RlOiBibG9jay5jb2RlLCBvcHRpb25zfSwge30pO1xuXG4gIC8vIEVhcmx5IHlpZWxkIHdoaWxlIHdlIHdhaXQgZm9yIHRoZSBmaXJzdCBldmFsdWF0aW9uIGFuZCByZW5kZXJcbiAgaWYgKG9wdGlvbnMub3V0cHV0ICYmICEoXCIxNlwiIGluIHB5b2RpZGVPanMucmVuZGVyZWRPanMpKSB7XG4gICAgY29uc3QgY29udGFpbmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcbiAgICBjb25zdCBzcGlubmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcblxuICAgIGlmIChvcHRpb25zLmVjaG8pIHtcbiAgICAgIC8vIFNob3cgb3V0cHV0IGFzIGhpZ2hsaWdodGVkIHNvdXJjZVxuICAgICAgY29uc3QgcHJlRWxlbSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJwcmVcIik7XG4gICAgICBjb250YWluZXIuY2xhc3NOYW1lID0gXCJzb3VyY2VDb2RlXCI7XG4gICAgICBwcmVFbGVtLmNsYXNzTmFtZSA9IFwic291cmNlQ29kZSBweXRob25cIjtcbiAgICAgIHByZUVsZW0uYXBwZW5kQ2hpbGQoaGlnaGxpZ2h0UHl0aG9uKGJsb2NrLmNvZGUpKTtcbiAgICAgIHNwaW5uZXIuY2xhc3NOYW1lID0gXCJzcGlubmVyLWdyb3cgc3Bpbm5lci1ncm93LXNtIG0tMiBwb3NpdGlvbi1hYnNvbHV0ZSB0b3AtMCBlbmQtMFwiO1xuICAgICAgcHJlRWxlbS5hcHBlbmRDaGlsZChzcGlubmVyKTtcbiAgICAgIGNvbnRhaW5lci5hcHBlbmRDaGlsZChwcmVFbGVtKTtcbiAgICB9IGVsc2Uge1xuICAgICAgc3Bpbm5lci5jbGFzc05hbWUgPSBcInNwaW5uZXItYm9yZGVyIHNwaW5uZXItYm9yZGVyLXNtXCI7XG4gICAgICBjb250YWluZXIuYXBwZW5kQ2hpbGQoc3Bpbm5lcik7XG4gICAgfVxuXG4gICAgeWllbGQgY29udGFpbmVyO1xuICB9XG5cbiAgcHlvZGlkZU9qcy5yZW5kZXJlZE9qc1tcIjE2XCJdID0gdHJ1ZTtcbiAgeWllbGQgYXdhaXQgcmVzdWx0O1xufVxuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtMTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xNSA9IHtcbiAgY29uc3QgeyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IsIGI2NERlY29kZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInB5b2RpZGUtMTUtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwicHlvZGlkZS0xNS1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IocHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF9weW9kaWRlX3ZhbHVlXzE1ID0gcHlvZGlkZU9qcy5wcm9jZXNzKF9weW9kaWRlX2VkaXRvcl8xNSwge30pO1xuX3B5b2RpZGVfZmVlZGJhY2tfMTUgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBQeW9kaWRlR3JhZGVyKF9weW9kaWRlX3ZhbHVlXzE1LmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTE0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6Il9weW9kaWRlX3ZhbHVlXzE0ID0ge1xuICBjb25zdCB7IGhpZ2hsaWdodFB5dGhvbiwgYjY0RGVjb2RlfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTE0LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgLy8gRGVmYXVsdCBldmFsdWF0aW9uIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oe1xuICAgIGlkOiBcInB5b2RpZGUtMTQtY29udGVudHNcIixcbiAgICBlY2hvOiB0cnVlLFxuICAgIG91dHB1dDogdHJ1ZVxuICB9LCBibG9jay5hdHRyKTtcblxuICAvLyBFdmFsdWF0ZSB0aGUgcHJvdmlkZWQgUHl0aG9uIGNvZGVcbiAgY29uc3QgcmVzdWx0ID0gcHlvZGlkZU9qcy5wcm9jZXNzKHtjb2RlOiBibG9jay5jb2RlLCBvcHRpb25zfSwge30pO1xuXG4gIC8vIEVhcmx5IHlpZWxkIHdoaWxlIHdlIHdhaXQgZm9yIHRoZSBmaXJzdCBldmFsdWF0aW9uIGFuZCByZW5kZXJcbiAgaWYgKG9wdGlvbnMub3V0cHV0ICYmICEoXCIxNFwiIGluIHB5b2RpZGVPanMucmVuZGVyZWRPanMpKSB7XG4gICAgY29uc3QgY29udGFpbmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcbiAgICBjb25zdCBzcGlubmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcblxuICAgIGlmIChvcHRpb25zLmVjaG8pIHtcbiAgICAgIC8vIFNob3cgb3V0cHV0IGFzIGhpZ2hsaWdodGVkIHNvdXJjZVxuICAgICAgY29uc3QgcHJlRWxlbSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJwcmVcIik7XG4gICAgICBjb250YWluZXIuY2xhc3NOYW1lID0gXCJzb3VyY2VDb2RlXCI7XG4gICAgICBwcmVFbGVtLmNsYXNzTmFtZSA9IFwic291cmNlQ29kZSBweXRob25cIjtcbiAgICAgIHByZUVsZW0uYXBwZW5kQ2hpbGQoaGlnaGxpZ2h0UHl0aG9uKGJsb2NrLmNvZGUpKTtcbiAgICAgIHNwaW5uZXIuY2xhc3NOYW1lID0gXCJzcGlubmVyLWdyb3cgc3Bpbm5lci1ncm93LXNtIG0tMiBwb3NpdGlvbi1hYnNvbHV0ZSB0b3AtMCBlbmQtMFwiO1xuICAgICAgcHJlRWxlbS5hcHBlbmRDaGlsZChzcGlubmVyKTtcbiAgICAgIGNvbnRhaW5lci5hcHBlbmRDaGlsZChwcmVFbGVtKTtcbiAgICB9IGVsc2Uge1xuICAgICAgc3Bpbm5lci5jbGFzc05hbWUgPSBcInNwaW5uZXItYm9yZGVyIHNwaW5uZXItYm9yZGVyLXNtXCI7XG4gICAgICBjb250YWluZXIuYXBwZW5kQ2hpbGQoc3Bpbm5lcik7XG4gICAgfVxuXG4gICAgeWllbGQgY29udGFpbmVyO1xuICB9XG5cbiAgcHlvZGlkZU9qcy5yZW5kZXJlZE9qc1tcIjE0XCJdID0gdHJ1ZTtcbiAgeWllbGQgYXdhaXQgcmVzdWx0O1xufVxuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtMTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xMyA9IHtcbiAgY29uc3QgeyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IsIGI2NERlY29kZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInB5b2RpZGUtMTMtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwicHlvZGlkZS0xMy1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IocHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF9weW9kaWRlX3ZhbHVlXzEzID0gcHlvZGlkZU9qcy5wcm9jZXNzKF9weW9kaWRlX2VkaXRvcl8xMywge30pO1xuX3B5b2RpZGVfZmVlZGJhY2tfMTMgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBQeW9kaWRlR3JhZGVyKF9weW9kaWRlX3ZhbHVlXzEzLmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEyLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgLy8gRGVmYXVsdCBleGVyY2lzZSBjb25maWd1cmF0aW9uXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKFxuICAgIHtcbiAgICAgIGlkOiBcInB5b2RpZGUtMTItY29udGVudHNcIixcbiAgICAgIGVudmlyOiBgZXhlcmNpc2UtZW52LSR7YmxvY2suYXR0ci5leGVyY2lzZX1gLFxuICAgICAgZXJyb3I6IGZhbHNlLFxuICAgICAgY2FwdGlvbjogJ0V4ZXJjaXNlJyxcbiAgICB9LFxuICAgIGJsb2NrLmF0dHJcbiAgKTtcblxuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsIGJsb2NrLmNvZGUsIG9wdGlvbnMpO1xuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbnZpZXdvZiBfcHlvZGlkZV92YWx1ZV8xMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTIsIHt9KTtcbl9weW9kaWRlX2ZlZWRiYWNrXzEyID0ge1xuICBjb25zdCB7IFB5b2RpZGVHcmFkZXIgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IGVtcHR5RmVlZGJhY2sgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdkaXYnKTtcblxuICBjb25zdCBncmFkZXIgPSBuZXcgUHlvZGlkZUdyYWRlcihfcHlvZGlkZV92YWx1ZV8xMi5ldmFsdWF0b3IpO1xuICBjb25zdCBmZWVkYmFjayA9IGF3YWl0IGdyYWRlci5ncmFkZUV4ZXJjaXNlKCk7XG4gIGlmICghZmVlZGJhY2spIHJldHVybiBlbXB0eUZlZWRiYWNrO1xuICByZXR1cm4gZmVlZGJhY2s7XG59XG4ifSx7ImNlbGxOYW1lIjoicHlvZGlkZS0xMSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJfcHlvZGlkZV92YWx1ZV8xMSA9IHtcbiAgY29uc3QgeyBoaWdobGlnaHRQeXRob24sIGI2NERlY29kZX0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xMS1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIC8vIERlZmF1bHQgZXZhbHVhdGlvbiBjb25maWd1cmF0aW9uXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHtcbiAgICBpZDogXCJweW9kaWRlLTExLWNvbnRlbnRzXCIsXG4gICAgZWNobzogdHJ1ZSxcbiAgICBvdXRwdXQ6IHRydWVcbiAgfSwgYmxvY2suYXR0cik7XG5cbiAgLy8gRXZhbHVhdGUgdGhlIHByb3ZpZGVkIFB5dGhvbiBjb2RlXG4gIGNvbnN0IHJlc3VsdCA9IHB5b2RpZGVPanMucHJvY2Vzcyh7Y29kZTogYmxvY2suY29kZSwgb3B0aW9uc30sIHt9KTtcblxuICAvLyBFYXJseSB5aWVsZCB3aGlsZSB3ZSB3YWl0IGZvciB0aGUgZmlyc3QgZXZhbHVhdGlvbiBhbmQgcmVuZGVyXG4gIGlmIChvcHRpb25zLm91dHB1dCAmJiAhKFwiMTFcIiBpbiBweW9kaWRlT2pzLnJlbmRlcmVkT2pzKSkge1xuICAgIGNvbnN0IGNvbnRhaW5lciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG4gICAgY29uc3Qgc3Bpbm5lciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG5cbiAgICBpZiAob3B0aW9ucy5lY2hvKSB7XG4gICAgICAvLyBTaG93IG91dHB1dCBhcyBoaWdobGlnaHRlZCBzb3VyY2VcbiAgICAgIGNvbnN0IHByZUVsZW0gPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwicHJlXCIpO1xuICAgICAgY29udGFpbmVyLmNsYXNzTmFtZSA9IFwic291cmNlQ29kZVwiO1xuICAgICAgcHJlRWxlbS5jbGFzc05hbWUgPSBcInNvdXJjZUNvZGUgcHl0aG9uXCI7XG4gICAgICBwcmVFbGVtLmFwcGVuZENoaWxkKGhpZ2hsaWdodFB5dGhvbihibG9jay5jb2RlKSk7XG4gICAgICBzcGlubmVyLmNsYXNzTmFtZSA9IFwic3Bpbm5lci1ncm93IHNwaW5uZXItZ3Jvdy1zbSBtLTIgcG9zaXRpb24tYWJzb2x1dGUgdG9wLTAgZW5kLTBcIjtcbiAgICAgIHByZUVsZW0uYXBwZW5kQ2hpbGQoc3Bpbm5lcik7XG4gICAgICBjb250YWluZXIuYXBwZW5kQ2hpbGQocHJlRWxlbSk7XG4gICAgfSBlbHNlIHtcbiAgICAgIHNwaW5uZXIuY2xhc3NOYW1lID0gXCJzcGlubmVyLWJvcmRlciBzcGlubmVyLWJvcmRlci1zbVwiO1xuICAgICAgY29udGFpbmVyLmFwcGVuZENoaWxkKHNwaW5uZXIpO1xuICAgIH1cblxuICAgIHlpZWxkIGNvbnRhaW5lcjtcbiAgfVxuXG4gIHB5b2RpZGVPanMucmVuZGVyZWRPanNbXCIxMVwiXSA9IHRydWU7XG4gIHlpZWxkIGF3YWl0IHJlc3VsdDtcbn1cbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfMTAgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEwLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMTAtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV8xMCA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMTAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTkiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoiX3B5b2RpZGVfdmFsdWVfOSA9IHtcbiAgY29uc3QgeyBoaWdobGlnaHRQeXRob24sIGI2NERlY29kZX0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS05LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgLy8gRGVmYXVsdCBldmFsdWF0aW9uIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oe1xuICAgIGlkOiBcInB5b2RpZGUtOS1jb250ZW50c1wiLFxuICAgIGVjaG86IHRydWUsXG4gICAgb3V0cHV0OiB0cnVlXG4gIH0sIGJsb2NrLmF0dHIpO1xuXG4gIC8vIEV2YWx1YXRlIHRoZSBwcm92aWRlZCBQeXRob24gY29kZVxuICBjb25zdCByZXN1bHQgPSBweW9kaWRlT2pzLnByb2Nlc3Moe2NvZGU6IGJsb2NrLmNvZGUsIG9wdGlvbnN9LCB7fSk7XG5cbiAgLy8gRWFybHkgeWllbGQgd2hpbGUgd2Ugd2FpdCBmb3IgdGhlIGZpcnN0IGV2YWx1YXRpb24gYW5kIHJlbmRlclxuICBpZiAob3B0aW9ucy5vdXRwdXQgJiYgIShcIjlcIiBpbiBweW9kaWRlT2pzLnJlbmRlcmVkT2pzKSkge1xuICAgIGNvbnN0IGNvbnRhaW5lciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG4gICAgY29uc3Qgc3Bpbm5lciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG5cbiAgICBpZiAob3B0aW9ucy5lY2hvKSB7XG4gICAgICAvLyBTaG93IG91dHB1dCBhcyBoaWdobGlnaHRlZCBzb3VyY2VcbiAgICAgIGNvbnN0IHByZUVsZW0gPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwicHJlXCIpO1xuICAgICAgY29udGFpbmVyLmNsYXNzTmFtZSA9IFwic291cmNlQ29kZVwiO1xuICAgICAgcHJlRWxlbS5jbGFzc05hbWUgPSBcInNvdXJjZUNvZGUgcHl0aG9uXCI7XG4gICAgICBwcmVFbGVtLmFwcGVuZENoaWxkKGhpZ2hsaWdodFB5dGhvbihibG9jay5jb2RlKSk7XG4gICAgICBzcGlubmVyLmNsYXNzTmFtZSA9IFwic3Bpbm5lci1ncm93IHNwaW5uZXItZ3Jvdy1zbSBtLTIgcG9zaXRpb24tYWJzb2x1dGUgdG9wLTAgZW5kLTBcIjtcbiAgICAgIHByZUVsZW0uYXBwZW5kQ2hpbGQoc3Bpbm5lcik7XG4gICAgICBjb250YWluZXIuYXBwZW5kQ2hpbGQocHJlRWxlbSk7XG4gICAgfSBlbHNlIHtcbiAgICAgIHNwaW5uZXIuY2xhc3NOYW1lID0gXCJzcGlubmVyLWJvcmRlciBzcGlubmVyLWJvcmRlci1zbVwiO1xuICAgICAgY29udGFpbmVyLmFwcGVuZENoaWxkKHNwaW5uZXIpO1xuICAgIH1cblxuICAgIHlpZWxkIGNvbnRhaW5lcjtcbiAgfVxuXG4gIHB5b2RpZGVPanMucmVuZGVyZWRPanNbXCI5XCJdID0gdHJ1ZTtcbiAgeWllbGQgYXdhaXQgcmVzdWx0O1xufVxuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtOCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJfcHlvZGlkZV92YWx1ZV84ID0ge1xuICBjb25zdCB7IGhpZ2hsaWdodFB5dGhvbiwgYjY0RGVjb2RlfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTgtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV2YWx1YXRpb24gY29uZmlndXJhdGlvblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7XG4gICAgaWQ6IFwicHlvZGlkZS04LWNvbnRlbnRzXCIsXG4gICAgZWNobzogdHJ1ZSxcbiAgICBvdXRwdXQ6IHRydWVcbiAgfSwgYmxvY2suYXR0cik7XG5cbiAgLy8gRXZhbHVhdGUgdGhlIHByb3ZpZGVkIFB5dGhvbiBjb2RlXG4gIGNvbnN0IHJlc3VsdCA9IHB5b2RpZGVPanMucHJvY2Vzcyh7Y29kZTogYmxvY2suY29kZSwgb3B0aW9uc30sIHt9KTtcblxuICAvLyBFYXJseSB5aWVsZCB3aGlsZSB3ZSB3YWl0IGZvciB0aGUgZmlyc3QgZXZhbHVhdGlvbiBhbmQgcmVuZGVyXG4gIGlmIChvcHRpb25zLm91dHB1dCAmJiAhKFwiOFwiIGluIHB5b2RpZGVPanMucmVuZGVyZWRPanMpKSB7XG4gICAgY29uc3QgY29udGFpbmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcbiAgICBjb25zdCBzcGlubmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcblxuICAgIGlmIChvcHRpb25zLmVjaG8pIHtcbiAgICAgIC8vIFNob3cgb3V0cHV0IGFzIGhpZ2hsaWdodGVkIHNvdXJjZVxuICAgICAgY29uc3QgcHJlRWxlbSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJwcmVcIik7XG4gICAgICBjb250YWluZXIuY2xhc3NOYW1lID0gXCJzb3VyY2VDb2RlXCI7XG4gICAgICBwcmVFbGVtLmNsYXNzTmFtZSA9IFwic291cmNlQ29kZSBweXRob25cIjtcbiAgICAgIHByZUVsZW0uYXBwZW5kQ2hpbGQoaGlnaGxpZ2h0UHl0aG9uKGJsb2NrLmNvZGUpKTtcbiAgICAgIHNwaW5uZXIuY2xhc3NOYW1lID0gXCJzcGlubmVyLWdyb3cgc3Bpbm5lci1ncm93LXNtIG0tMiBwb3NpdGlvbi1hYnNvbHV0ZSB0b3AtMCBlbmQtMFwiO1xuICAgICAgcHJlRWxlbS5hcHBlbmRDaGlsZChzcGlubmVyKTtcbiAgICAgIGNvbnRhaW5lci5hcHBlbmRDaGlsZChwcmVFbGVtKTtcbiAgICB9IGVsc2Uge1xuICAgICAgc3Bpbm5lci5jbGFzc05hbWUgPSBcInNwaW5uZXItYm9yZGVyIHNwaW5uZXItYm9yZGVyLXNtXCI7XG4gICAgICBjb250YWluZXIuYXBwZW5kQ2hpbGQoc3Bpbm5lcik7XG4gICAgfVxuXG4gICAgeWllbGQgY29udGFpbmVyO1xuICB9XG5cbiAgcHlvZGlkZU9qcy5yZW5kZXJlZE9qc1tcIjhcIl0gPSB0cnVlO1xuICB5aWVsZCBhd2FpdCByZXN1bHQ7XG59XG4ifSx7ImNlbGxOYW1lIjoicHlvZGlkZS03IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNyA9IHtcbiAgY29uc3QgeyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IsIGI2NERlY29kZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInB5b2RpZGUtNy1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGBweW9kaWRlLTctY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV83ID0gcHlvZGlkZU9qcy5wcm9jZXNzKF9weW9kaWRlX2VkaXRvcl83LCB7fSk7XG4ifSx7ImNlbGxOYW1lIjoicHlvZGlkZS02IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNiA9IHtcbiAgY29uc3QgeyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IsIGI2NERlY29kZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInB5b2RpZGUtNi1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGBweW9kaWRlLTYtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV82ID0gcHlvZGlkZU9qcy5wcm9jZXNzKF9weW9kaWRlX2VkaXRvcl82LCB7fSk7XG4ifSx7ImNlbGxOYW1lIjoicHlvZGlkZS01IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfcHlvZGlkZV9lZGl0b3JfNSA9IHtcbiAgY29uc3QgeyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IsIGI2NERlY29kZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInB5b2RpZGUtNS1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGBweW9kaWRlLTUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yKFxuICAgIHB5b2RpZGVPanMucHlvZGlkZVByb21pc2UsXG4gICAgYmxvY2suY29kZSxcbiAgICBvcHRpb25zXG4gICk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fcHlvZGlkZV92YWx1ZV81ID0gcHlvZGlkZU9qcy5wcm9jZXNzKF9weW9kaWRlX2VkaXRvcl81LCB7fSk7XG4ifSx7ImNlbGxOYW1lIjoicHlvZGlkZS00IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6Il9weW9kaWRlX3ZhbHVlXzQgPSB7XG4gIGNvbnN0IHsgaGlnaGxpZ2h0UHl0aG9uLCBiNjREZWNvZGV9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInB5b2RpZGUtNC1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIC8vIERlZmF1bHQgZXZhbHVhdGlvbiBjb25maWd1cmF0aW9uXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHtcbiAgICBpZDogXCJweW9kaWRlLTQtY29udGVudHNcIixcbiAgICBlY2hvOiB0cnVlLFxuICAgIG91dHB1dDogdHJ1ZVxuICB9LCBibG9jay5hdHRyKTtcblxuICAvLyBFdmFsdWF0ZSB0aGUgcHJvdmlkZWQgUHl0aG9uIGNvZGVcbiAgY29uc3QgcmVzdWx0ID0gcHlvZGlkZU9qcy5wcm9jZXNzKHtjb2RlOiBibG9jay5jb2RlLCBvcHRpb25zfSwge30pO1xuXG4gIC8vIEVhcmx5IHlpZWxkIHdoaWxlIHdlIHdhaXQgZm9yIHRoZSBmaXJzdCBldmFsdWF0aW9uIGFuZCByZW5kZXJcbiAgaWYgKG9wdGlvbnMub3V0cHV0ICYmICEoXCI0XCIgaW4gcHlvZGlkZU9qcy5yZW5kZXJlZE9qcykpIHtcbiAgICBjb25zdCBjb250YWluZXIgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwiZGl2XCIpO1xuICAgIGNvbnN0IHNwaW5uZXIgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwiZGl2XCIpO1xuXG4gICAgaWYgKG9wdGlvbnMuZWNobykge1xuICAgICAgLy8gU2hvdyBvdXRwdXQgYXMgaGlnaGxpZ2h0ZWQgc291cmNlXG4gICAgICBjb25zdCBwcmVFbGVtID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcInByZVwiKTtcbiAgICAgIGNvbnRhaW5lci5jbGFzc05hbWUgPSBcInNvdXJjZUNvZGVcIjtcbiAgICAgIHByZUVsZW0uY2xhc3NOYW1lID0gXCJzb3VyY2VDb2RlIHB5dGhvblwiO1xuICAgICAgcHJlRWxlbS5hcHBlbmRDaGlsZChoaWdobGlnaHRQeXRob24oYmxvY2suY29kZSkpO1xuICAgICAgc3Bpbm5lci5jbGFzc05hbWUgPSBcInNwaW5uZXItZ3JvdyBzcGlubmVyLWdyb3ctc20gbS0yIHBvc2l0aW9uLWFic29sdXRlIHRvcC0wIGVuZC0wXCI7XG4gICAgICBwcmVFbGVtLmFwcGVuZENoaWxkKHNwaW5uZXIpO1xuICAgICAgY29udGFpbmVyLmFwcGVuZENoaWxkKHByZUVsZW0pO1xuICAgIH0gZWxzZSB7XG4gICAgICBzcGlubmVyLmNsYXNzTmFtZSA9IFwic3Bpbm5lci1ib3JkZXIgc3Bpbm5lci1ib3JkZXItc21cIjtcbiAgICAgIGNvbnRhaW5lci5hcHBlbmRDaGlsZChzcGlubmVyKTtcbiAgICB9XG5cbiAgICB5aWVsZCBjb250YWluZXI7XG4gIH1cblxuICBweW9kaWRlT2pzLnJlbmRlcmVkT2pzW1wiNFwiXSA9IHRydWU7XG4gIHlpZWxkIGF3YWl0IHJlc3VsdDtcbn1cbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoiX3B5b2RpZGVfdmFsdWVfMyA9IHtcbiAgY29uc3QgeyBoaWdobGlnaHRQeXRob24sIGI2NERlY29kZX0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgLy8gRGVmYXVsdCBldmFsdWF0aW9uIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oe1xuICAgIGlkOiBcInB5b2RpZGUtMy1jb250ZW50c1wiLFxuICAgIGVjaG86IHRydWUsXG4gICAgb3V0cHV0OiB0cnVlXG4gIH0sIGJsb2NrLmF0dHIpO1xuXG4gIC8vIEV2YWx1YXRlIHRoZSBwcm92aWRlZCBQeXRob24gY29kZVxuICBjb25zdCByZXN1bHQgPSBweW9kaWRlT2pzLnByb2Nlc3Moe2NvZGU6IGJsb2NrLmNvZGUsIG9wdGlvbnN9LCB7fSk7XG5cbiAgLy8gRWFybHkgeWllbGQgd2hpbGUgd2Ugd2FpdCBmb3IgdGhlIGZpcnN0IGV2YWx1YXRpb24gYW5kIHJlbmRlclxuICBpZiAob3B0aW9ucy5vdXRwdXQgJiYgIShcIjNcIiBpbiBweW9kaWRlT2pzLnJlbmRlcmVkT2pzKSkge1xuICAgIGNvbnN0IGNvbnRhaW5lciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG4gICAgY29uc3Qgc3Bpbm5lciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG5cbiAgICBpZiAob3B0aW9ucy5lY2hvKSB7XG4gICAgICAvLyBTaG93IG91dHB1dCBhcyBoaWdobGlnaHRlZCBzb3VyY2VcbiAgICAgIGNvbnN0IHByZUVsZW0gPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwicHJlXCIpO1xuICAgICAgY29udGFpbmVyLmNsYXNzTmFtZSA9IFwic291cmNlQ29kZVwiO1xuICAgICAgcHJlRWxlbS5jbGFzc05hbWUgPSBcInNvdXJjZUNvZGUgcHl0aG9uXCI7XG4gICAgICBwcmVFbGVtLmFwcGVuZENoaWxkKGhpZ2hsaWdodFB5dGhvbihibG9jay5jb2RlKSk7XG4gICAgICBzcGlubmVyLmNsYXNzTmFtZSA9IFwic3Bpbm5lci1ncm93IHNwaW5uZXItZ3Jvdy1zbSBtLTIgcG9zaXRpb24tYWJzb2x1dGUgdG9wLTAgZW5kLTBcIjtcbiAgICAgIHByZUVsZW0uYXBwZW5kQ2hpbGQoc3Bpbm5lcik7XG4gICAgICBjb250YWluZXIuYXBwZW5kQ2hpbGQocHJlRWxlbSk7XG4gICAgfSBlbHNlIHtcbiAgICAgIHNwaW5uZXIuY2xhc3NOYW1lID0gXCJzcGlubmVyLWJvcmRlciBzcGlubmVyLWJvcmRlci1zbVwiO1xuICAgICAgY29udGFpbmVyLmFwcGVuZENoaWxkKHNwaW5uZXIpO1xuICAgIH1cblxuICAgIHlpZWxkIGNvbnRhaW5lcjtcbiAgfVxuXG4gIHB5b2RpZGVPanMucmVuZGVyZWRPanNbXCIzXCJdID0gdHJ1ZTtcbiAgeWllbGQgYXdhaXQgcmVzdWx0O1xufVxuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtMiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3B5b2RpZGVfZWRpdG9yXzIgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTItY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgcHlvZGlkZS0yLWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFB5b2RpZGVFeGVyY2lzZUVkaXRvcihcbiAgICBweW9kaWRlT2pzLnB5b2RpZGVQcm9taXNlLFxuICAgIGJsb2NrLmNvZGUsXG4gICAgb3B0aW9uc1xuICApO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3B5b2RpZGVfdmFsdWVfMiA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMiwge30pO1xuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtMSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3B5b2RpZGVfZWRpdG9yXzEgPSB7XG4gIGNvbnN0IHsgUHlvZGlkZUV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLTEtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgcHlvZGlkZS0xLWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFB5b2RpZGVFeGVyY2lzZUVkaXRvcihcbiAgICBweW9kaWRlT2pzLnB5b2RpZGVQcm9taXNlLFxuICAgIGJsb2NrLmNvZGUsXG4gICAgb3B0aW9uc1xuICApO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3B5b2RpZGVfdmFsdWVfMSA9IHB5b2RpZGVPanMucHJvY2VzcyhfcHlvZGlkZV9lZGl0b3JfMSwge30pO1xuIn0seyJjZWxsTmFtZSI6InB5b2RpZGUtcHJlbHVkZSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InB5b2RpZGVPanMgPSB7XG4gIGNvbnN0IHtcbiAgICBQeW9kaWRlRXZhbHVhdG9yLFxuICAgIFB5b2RpZGVFbnZpcm9ubWVudE1hbmFnZXIsXG4gICAgc2V0dXBQeXRob24sXG4gICAgc3RhcnRQeW9kaWRlV29ya2VyLFxuICAgIGI2NERlY29kZSxcbiAgICBjb2xsYXBzZVBhdGgsXG4gIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHN0YXR1c0NvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1zdGF0dXNcIik7XG4gIGNvbnN0IGluZGljYXRvckNvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1pbmRpY2F0b3JcIik7XG4gIGluZGljYXRvckNvbnRhaW5lci5jbGFzc0xpc3QucmVtb3ZlKFwiZC1ub25lXCIpO1xuXG4gIGxldCBzdGF0dXNUZXh0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKVxuICBzdGF0dXNUZXh0LmNsYXNzTGlzdCA9IFwiZXhlcmNpc2UtbG9hZGluZy1kZXRhaWxzXCI7XG4gIHN0YXR1c1RleHQgPSBzdGF0dXNDb250YWluZXIuYXBwZW5kQ2hpbGQoc3RhdHVzVGV4dCk7XG4gIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgSW5pdGlhbGlzZWA7XG5cbiAgLy8gSG9pc3QgaW5kaWNhdG9yIG91dCBmcm9tIGZpbmFsIHNsaWRlIHdoZW4gcnVubmluZyB1bmRlciByZXZlYWxcbiAgY29uc3QgcmV2ZWFsU3RhdHVzID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi5yZXZlYWwgLmV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpZiAocmV2ZWFsU3RhdHVzKSB7XG4gICAgcmV2ZWFsU3RhdHVzLnJlbW92ZSgpO1xuICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsID4gLnNsaWRlc1wiKS5hcHBlbmRDaGlsZChyZXZlYWxTdGF0dXMpO1xuICB9XG5cbiAgLy8gTWFrZSBhbnkgcmV2ZWFsIHNsaWRlcyB3aXRoIGxpdmUgY2VsbHMgc2Nyb2xsYWJsZVxuICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKFwiLnJldmVhbCAuZXhlcmNpc2UtY2VsbFwiKS5mb3JFYWNoKChlbCkgPT4ge1xuICAgIGVsLmNsb3Nlc3QoJ3NlY3Rpb24uc2xpZGUnKS5jbGFzc0xpc3QuYWRkKFwic2Nyb2xsYWJsZVwiKTtcbiAgfSlcblxuICAvLyBQeW9kaWRlIHN1cHBsZW1lbnRhbCBkYXRhIGFuZCBvcHRpb25zXG4gIGNvbnN0IGRhdGFDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInB5b2RpZGUtZGF0YVxcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGRhdGEgPSBKU09OLnBhcnNlKGI2NERlY29kZShkYXRhQ29udGVudCkpO1xuXG4gIC8vIEdyYWIgbGlzdCBvZiByZXNvdXJjZXMgdG8gYmUgZG93bmxvYWRlZFxuICBjb25zdCBmaWxlc0NvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwidmZzLWZpbGVcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBmaWxlcyA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKGZpbGVzQ29udGVudCkpO1xuXG4gIGxldCBweW9kaWRlUHJvbWlzZSA9IChhc3luYyAoKSA9PiB7XG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBQeW9kaWRlYDtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgc3RhcnRQeW9kaWRlV29ya2VyKGRhdGEub3B0aW9ucyk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYERvd25sb2FkaW5nIHBhY2thZ2U6IG1pY3JvcGlwYDtcbiAgICBhd2FpdCBweW9kaWRlLmxvYWRQYWNrYWdlKFwibWljcm9waXBcIik7XG4gICAgY29uc3QgbWljcm9waXAgPSBhd2FpdCBweW9kaWRlLnB5aW1wb3J0KFwibWljcm9waXBcIik7XG4gICAgYXdhaXQgZGF0YS5wYWNrYWdlcy5wa2dzLm1hcCgocGtnKSA9PiAoKSA9PiB7XG4gICAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYERvd25sb2FkaW5nIHBhY2thZ2U6ICR7cGtnfWA7XG4gICAgICByZXR1cm4gbWljcm9waXAuaW5zdGFsbChwa2cpO1xuICAgIH0pLnJlZHVjZSgoY3VyLCBuZXh0KSA9PiBjdXIudGhlbihuZXh0KSwgUHJvbWlzZS5yZXNvbHZlKCkpO1xuICAgIGF3YWl0IG1pY3JvcGlwLmRlc3Ryb3koKTtcblxuICAgIC8vIERvd25sb2FkIGFuZCBpbnN0YWxsIHJlc291cmNlc1xuICAgIGF3YWl0IGZpbGVzLm1hcCgoZmlsZSkgPT4gYXN5bmMgKCkgPT4ge1xuICAgICAgY29uc3QgbmFtZSA9IGZpbGUuc3Vic3RyaW5nKGZpbGUubGFzdEluZGV4T2YoJy8nKSArIDEpO1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyByZXNvdXJjZTogJHtuYW1lfWA7XG4gICAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IGZldGNoKGZpbGUpO1xuICAgICAgaWYgKCFyZXNwb25zZS5vaykge1xuICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYENhbid0IGRvd25sb2FkIFxcYCR7ZmlsZX1cXGAuIEVycm9yICR7cmVzcG9uc2Uuc3RhdHVzfTogXCIke3Jlc3BvbnNlLnN0YXR1c1RleHR9XCIuYCk7XG4gICAgICB9XG4gICAgICBjb25zdCBkYXRhID0gYXdhaXQgcmVzcG9uc2UuYXJyYXlCdWZmZXIoKTtcblxuICAgICAgLy8gU3RvcmUgVVJMcyBpbiB0aGUgY3dkIHdpdGhvdXQgYW55IHN1YmRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGlmIChmaWxlLmluY2x1ZGVzKFwiOi8vXCIpKSB7XG4gICAgICAgIGZpbGUgPSBuYW1lO1xuICAgICAgfVxuXG4gICAgICAvLyBDb2xsYXBzZSBoaWdoZXIgZGlyZWN0b3J5IHN0cnVjdHVyZVxuICAgICAgZmlsZSA9IGNvbGxhcHNlUGF0aChmaWxlKTtcblxuICAgICAgLy8gQ3JlYXRlIGRpcmVjdG9yeSB0cmVlLCBpZ25vcmluZyBcImRpcmVjdG9yeSBleGlzdHNcIiBWRlMgZXJyb3JzXG4gICAgICBjb25zdCBwYXJ0cyA9IGZpbGUuc3BsaXQoJy8nKS5zbGljZSgwLCAtMSk7XG4gICAgICBsZXQgcGF0aCA9ICcnO1xuICAgICAgd2hpbGUgKHBhcnRzLmxlbmd0aCA+IDApIHtcbiAgICAgICAgcGF0aCArPSBwYXJ0cy5zaGlmdCgpICsgJy8nO1xuICAgICAgICB0cnkge1xuICAgICAgICAgIGF3YWl0IHB5b2RpZGUuRlMubWtkaXIocGF0aCk7XG4gICAgICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgICAgICBpZiAoZS5uYW1lICE9PSBcIkVycm5vRXJyb3JcIikgdGhyb3cgZTtcbiAgICAgICAgICBpZiAoZS5lcnJubyAhPT0gMjApIHtcbiAgICAgICAgICAgIGNvbnN0IGVycm9yVGV4dFB0ciA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5fc3RyZXJyb3IoZS5lcnJubyk7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYEZpbGVzeXN0ZW0gRXJyb3IgJHtlLmVycm5vfSBcIiR7ZXJyb3JUZXh0fVwiLmApO1xuICAgICAgICAgIH1cbiAgICAgICAgfVxuICAgICAgfVxuXG4gICAgICAvLyBXcml0ZSB0aGlzIGZpbGUgdG8gdGhlIFZGU1xuICAgICAgdHJ5IHtcbiAgICAgICAgcmV0dXJuIGF3YWl0IHB5b2RpZGUuRlMud3JpdGVGaWxlKGZpbGUsIG5ldyBVaW50OEFycmF5KGRhdGEpKTtcbiAgICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgIGNvbnN0IGVycm9yVGV4dFB0ciA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5fc3RyZXJyb3IoZS5lcnJubyk7XG4gICAgICAgIGNvbnN0IGVycm9yVGV4dCA9IGF3YWl0IHB5b2RpZGUuX21vZHVsZS5VVEY4VG9TdHJpbmcoZXJyb3JUZXh0UHRyKTtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgIH1cbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcblxuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgUHlvZGlkZSBlbnZpcm9ubWVudCBzZXR1cGA7XG4gICAgYXdhaXQgc2V0dXBQeXRob24ocHlvZGlkZSk7XG5cbiAgICBzdGF0dXNUZXh0LnJlbW92ZSgpO1xuICAgIGlmIChzdGF0dXNDb250YWluZXIuY2hpbGRyZW4ubGVuZ3RoID09IDApIHtcbiAgICAgIHN0YXR1c0NvbnRhaW5lci5wYXJlbnROb2RlLnJlbW92ZSgpO1xuICAgIH1cbiAgICByZXR1cm4gcHlvZGlkZTtcbiAgfSkoKS5jYXRjaCgoZXJyKSA9PiB7XG4gICAgc3RhdHVzVGV4dC5zdHlsZS5jb2xvciA9IFwidmFyKC0tZXhlcmNpc2UtZWRpdG9yLWhsLWVyLCAjQUQwMDAwKVwiO1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBlcnIubWVzc2FnZTtcbiAgICAvL2luZGljYXRvckNvbnRhaW5lci5xdWVyeVNlbGVjdG9yKFwiLnNwaW5uZXItZ3Jvd1wiKS5jbGFzc0xpc3QuYWRkKFwiZC1ub25lXCIpO1xuICAgIHRocm93IGVycjtcbiAgfSk7XG5cbiAgLy8gS2VlcCB0cmFjayBvZiBpbml0aWFsIE9KUyBibG9jayByZW5kZXJcbiAgY29uc3QgcmVuZGVyZWRPanMgPSB7fTtcblxuICBjb25zdCBwcm9jZXNzID0gYXN5bmMgKGNvbnRleHQsIGlucHV0cykgPT4ge1xuICAgIGNvbnN0IHB5b2RpZGUgPSBhd2FpdCBweW9kaWRlUHJvbWlzZTtcbiAgICBjb25zdCBldmFsdWF0b3IgPSBuZXcgUHlvZGlkZUV2YWx1YXRvcihweW9kaWRlLCBjb250ZXh0KTtcbiAgICBhd2FpdCBldmFsdWF0b3IucHJvY2VzcyhpbnB1dHMpO1xuICAgIHJldHVybiBldmFsdWF0b3IuY29udGFpbmVyO1xuICB9XG5cbiAgcmV0dXJuIHtcbiAgICBweW9kaWRlUHJvbWlzZSxcbiAgICByZW5kZXJlZE9qcyxcbiAgICBwcm9jZXNzLFxuICB9O1xufVxuIn1dfQ==
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
+</section>
+
+</main> <!-- /main -->
+<script>
+// Copy buttons for quarto-live code blocks.
+//
+// Quarto renders its own code blocks server side, each with a copy button
+// already in the markup, and at load it constructs one ClipboardJS instance
+// bound to the selector ".code-copy-button". quarto-live works differently: it
+// ships each cell as base64 in a <script type="pyodide-N-contents"> tag and
+// builds the DOM for it in the browser, which happens after Quarto has already
+// written its markup. Those blocks therefore never carry a button.
+//
+// ClipboardJS was given a selector string rather than a list of elements, so it
+// delegates from the document and picks up anything matching that selector
+// later on. Inserting the same button markup is enough, and no second
+// ClipboardJS instance is needed.
+(() => {
+  const BUTTON = 'Copy to Clipboard';
+
+  const addButton = (block) => {
+    if (block.querySelector(':scope > .code-copy-button')) return;
+    if (!block.querySelector('code')) return;
+    // The button is position:absolute with right:0, so it needs a positioned
+    // block to sit in. Quarto's own blocks get that from its CSS, the ones
+    // quarto-live builds come out static and would fling the button into the
+    // right margin.
+    if (getComputedStyle(block).position === 'static') {
+      block.style.position = 'relative';
+    }
+    const button = document.createElement('button');
+    button.title = BUTTON;
+    button.className = 'code-copy-button';
+    button.innerHTML = '<i class="bi"></i>';
+    block.appendChild(button);
+  };
+
+  const scan = (root) => {
+    if (root.nodeType !== Node.ELEMENT_NODE) return;
+    if (root.matches('div.sourceCode')) addButton(root);
+    root.querySelectorAll('div.sourceCode').forEach(addButton);
+  };
+
+  scan(document.body);
+
+  new MutationObserver((records) => {
+    for (const record of records) {
+      for (const node of record.addedNodes) scan(node);
+    }
+  }).observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../python";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Gekopieerd!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Gekopieerd!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../python/variabelen.html" class="pagination-link" aria-label="1.2 Variabelen en types">
+        <span class="nav-page-text">1.2 Variabelen en types</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><img src="../assets/vp-logo.png" alt="Vita et Pax" height="22"> Vita et Pax · Schoten</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
