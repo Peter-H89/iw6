@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl" xml:lang="nl"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Waar de notatie tekortschiet – Informatica-wetenschappen 6</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../getallen/zelftoets.html" rel="next">
+<link href="../getallen/bits-en-bytes.html" rel="prev">
+<link href="../assets/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-a8e522ed11da703b390bf278141b248b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-025ddc436d147a81fd96b526f1d0e27e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-a8e522ed11da703b390bf278141b248b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Geen resultaten",
+    "search-matching-documents-text": "Gevonden documenten",
+    "search-copy-link-title": "Kopieer link om te zoeken",
+    "search-hide-matches-text": "Extra overeenkomsten verbergen",
+    "search-more-match-text": "meer overeenkomst in dit document",
+    "search-more-matches-text": "meer overeenkomsten in dit document",
+    "search-clear-button-title": "Wissen",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuleren",
+    "search-submit-button-title": "Verzenden",
+    "search-label": "Zoeken"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<meta name="robots" content="noindex, nofollow">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/vp-logo.png" alt="" class="navbar-logo light-content">
+    <img src="../assets/vp-logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Informatica-wetenschappen 6</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Zoeken"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Schakel navigatie" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../voorwoord.html"> 
+<span class="menu-text">Voorwoord</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../python/uitdrukkingen.html"> 
+<span class="menu-text">Leereenheid 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../getallen/positiestelsels.html" aria-current="page"> 
+<span class="menu-text">Extra</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Schakel donkere modus"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Schakel zijbalknavigatie" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../getallen/positiestelsels.html">Getallen</a></li><li class="breadcrumb-item"><a href="../getallen/grenzen.html">Waar de notatie tekortschiet</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Schakel zijbalknavigatie" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Getallen</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Schakel sectie">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../getallen/positiestelsels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Positiestelsels en binaire getallen</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../getallen/bits-en-bytes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rekenen met bits, en ze groeperen</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../getallen/grenzen.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Waar de notatie tekortschiet</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../getallen/zelftoets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Zelftoets</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Op deze pagina</h2>
+   
+  <ul>
+  <li><a href="#als-de-teller-overloopt" id="toc-als-de-teller-overloopt" class="nav-link active" data-scroll-target="#als-de-teller-overloopt"><span class="header-section-number">1</span> Als de teller overloopt</a></li>
+  <li><a href="#als-de-adressen-opraken" id="toc-als-de-adressen-opraken" class="nav-link" data-scroll-target="#als-de-adressen-opraken"><span class="header-section-number">2</span> Als de adressen opraken</a></li>
+  <li><a href="#cijfers-na-de-komma" id="toc-cijfers-na-de-komma" class="nav-link" data-scroll-target="#cijfers-na-de-komma"><span class="header-section-number">3</span> Cijfers na de komma</a></li>
+  <li><a href="#kommagetallen-in-een-computer" id="toc-kommagetallen-in-een-computer" class="nav-link" data-scroll-target="#kommagetallen-in-een-computer"><span class="header-section-number">4</span> Kommagetallen in een computer</a></li>
+  <li><a href="#terug-naar-de-vraag" id="toc-terug-naar-de-vraag" class="nav-link" data-scroll-target="#terug-naar-de-vraag"><span class="header-section-number">5</span> Terug naar de vraag</a></li>
+  <li><a href="#conclusie" id="toc-conclusie" class="nav-link" data-scroll-target="#conclusie"><span class="header-section-number">6</span> Conclusie</a></li>
+  <li><a href="#begrippen" id="toc-begrippen" class="nav-link" data-scroll-target="#begrippen"><span class="header-section-number">7</span> Begrippen</a></li>
+  <li><a href="#oefeningen" id="toc-oefeningen" class="nav-link" data-scroll-target="#oefeningen"><span class="header-section-number">8</span> Oefeningen</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../getallen/positiestelsels.html">Getallen</a></li><li class="breadcrumb-item"><a href="../getallen/grenzen.html">Waar de notatie tekortschiet</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Waar de notatie tekortschiet</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled" title="Leerdoelen">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Opmerking</span>Leerdoelen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Na deze les kan je:</p>
+<ul>
+<li>voorspellen wat een teller van vaste breedte doet wanneer hij zijn hoogste waarde voorbijgaat</li>
+<li>beoordelen of een breuk exact in binair past</li>
+<li>uitleggen waarom een computer sommige heel gewone kommagetallen niet exact kan bewaren, en wat dat betekent voor het vergelijken ervan</li>
+</ul>
+</div>
+</div>
+<p>Een byte is acht bits, en dat aantal ligt vast. Op papier schrijf je er een cijfer bij zodra je er een nodig hebt, maar een computer heeft die ruimte niet. Deze les gaat over wat daaruit volgt. Je botst op drie manieren tegen die grens aan. Het getal is te groot voor de bits die er zijn. De patronen raken op. Of het getal past er principieel niet in, hoeveel bits je er ook aan geeft.</p>
+<section id="als-de-teller-overloopt" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Als de teller overloopt</h1>
+<p>Zet een byte op zijn hoogste waarde, <span class="math inline">\(11111111_2\)</span>, en tel er <span class="math inline">\(1\)</span> bij op. Uit de eerste les van deze reeks weet je dat een rij van acht enen samen <span class="math inline">\(2^8 - 1 = 255\)</span> is, dus precies één tekort voor <span class="math inline">\(256\)</span>. Binair optellen levert dan</p>
+<p><span class="math display">\[
+11111111_2 + 1 = 100000000_2 = 256 .
+\]</span></p>
+<p>Die som klopt, en ze past niet. Het antwoord heeft negen bits nodig en de byte heeft er acht. Het negende bit bestaat eenvoudigweg niet en valt weg. Wat overblijft is <span class="math inline">\(00000000_2\)</span>, dus <span class="math inline">\(0\)</span>. De teller is rondgelopen. Dat verschijnsel heet <strong>overloop</strong>, in het Engels <em>overflow</em>, en dat is de term die je in foutmeldingen en documentatie zal tegenkomen.</p>
+<p>Dit is geen randgeval maar de regel. Een computer rekent binnen een vast aantal bits, en alles wat daarbuiten valt, verdwijnt. Elke optelling verloopt daarmee in werkelijkheid <strong>modulo <span class="math inline">\(2^n\)</span></strong>, zoals een kilometerteller die na <span class="math inline">\(999\,999\)</span> opnieuw bij nul begint. Staat een byte op <span class="math inline">\(200\)</span> en komt er <span class="math inline">\(100\)</span> bij, dan is het resultaat niet <span class="math inline">\(300\)</span> maar <span class="math inline">\(300 \bmod 256 = 44\)</span>. In Python schrijf je die rest als <code>300 % 256</code>, met het procentteken als operator voor “de rest bij deling”.</p>
+<p>Zo’n overloop gebeurt stil. Er komt geen foutmelding, want een controle bij elke optelling zou de machine merkbaar vertragen.</p>
+<div class="terzijde">
+<p>Op 4 juni 1996 ging Ariane 5, vlucht V-88, zevenendertig seconden na de start verloren. Een snelheidswaarde werd van een kommagetal omgezet naar een geheel getal van <span class="math inline">\(16\)</span> bits, paste daar niet in, en de besturing schakelde uit. De schade bedroeg meer dan een half miljard euro in hedendaags geld.</p>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../img/ariane5failure.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="De ontploffing van Ariane 5 vlucht V-88, 37 seconden na de lancering."><img src="../img/ariane5failure.jpg" class="img-fluid figure-img" style="width:50.0%" alt="De ontploffing van Ariane 5 vlucht V-88, 37 seconden na de lancering."></a></p>
+<figcaption>De ontploffing van Ariane 5 vlucht V-88, <span class="math inline">\(37\)</span> seconden na de lancering.</figcaption>
+</figure>
+</div>
+<p>Python zelf loopt niet over. Gehele getallen groeien er mee met de waarde die ze moeten bevatten, wat gebruiksvriendelijk is en trager. Heel wat reken- en machinelearningbibliotheken voor Python zijn mede daarom in C of C++ geschreven, en daar ligt de breedte wel vast.</p>
+</section>
+<section id="als-de-adressen-opraken" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Als de adressen opraken</h1>
+<p>Elk toestel op het internet heeft een IP-adres, geschreven als vier bytes. Dit adres herken je misschien van je eigen router.</p>
+<pre><code>     192        168          0          1
+11000000 . 10101000 . 00000000 . 00000001</code></pre>
+<p>Vier bytes van acht bits, samen <span class="math inline">\(32\)</span> bits, en elk getal loopt van <span class="math inline">\(0\)</span> tot <span class="math inline">\(255\)</span>. Dat geeft <span class="math inline">\(2^{32}\)</span> IP-adressen, ruim vier miljard. Dat aantal ligt vast, dus vroeg of laat is het laatste adres uitgedeeld, en dat is intussen gebeurd. De oplossing is een ruimere notatie: IPv6 telt <span class="math inline">\(128\)</span> bits per adres.</p>
+<div class="terzijde">
+<p>Toen het formaat van IPv4 werd afgesproken in de jaren zeventig, leek vier miljard eindeloos: er hingen een paar honderd machines aan het netwerk. In februari 2011 deelde de centrale beheerder zijn laatste blokken uit. Europa ging het jaar daarop op rantsoen. Sindsdien wordt er gedeeld: tientallen toestellen achter één publiek IP-adres.</p>
+<p>IPv6 bestaat als norm sinds 1998 en is nog altijd niet overal ingevoerd. Een notatie vervangen die overal ingebakken zit, is moeilijker dan ze meteen ruim genoeg kiezen.</p>
+</div>
+</section>
+<section id="cijfers-na-de-komma" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Cijfers na de komma</h1>
+<p>Tot hier ging het over gehele getallen. De regel uit de eerste les van deze reeks loopt nochtans gewoon door voorbij de komma, met negatieve exponenten. Decimaal staan daar de tienden, honderdsten en duizendsten. Binair staan daar de helften, kwarten en achtsten:</p>
+<p><span class="math display">\[
+0{,}101_2 = 2^{-1} + 2^{-3} = \tfrac{1}{2} + \tfrac{1}{8} = 0{,}625 .
+\]</span></p>
+<p>Probeer nu twee breuken zelf, op papier. De eerste is <span class="math inline">\(\tfrac{3}{4}\)</span>, en die lukt vlot, want <span class="math inline">\(\tfrac{3}{4} = \tfrac{1}{2} + \tfrac{1}{4} = 0{,}11_2\)</span>. De tweede is <span class="math inline">\(\tfrac{1}{5}\)</span>. Dat getal ligt tussen <span class="math inline">\(\tfrac{1}{8}\)</span> en <span class="math inline">\(\tfrac{1}{4}\)</span>, dus je begint met <span class="math inline">\(0{,}001\)</span>, en daarna blijf je bezig. Wat je ook toevoegt, je komt er nooit precies uit.</p>
+<p>Het verschil zit in de noemer. Een getal met eindig veel cijfers na de binaire komma is te schrijven als <span class="math inline">\(m / 2^{k}\)</span>, dus met een macht van twee als noemer. Voor <span class="math inline">\(\tfrac{3}{4}\)</span> is dat het geval. Voor <span class="math inline">\(\tfrac{1}{5}\)</span> niet, want <span class="math inline">\(5\)</span> deelt geen enkele macht van twee. Een breuk heeft een eindige binaire notatie precies wanneer haar noemer, in laagste termen, een macht van twee is.</p>
+<p>Decimaal is die voorwaarde ruimer, want <span class="math inline">\(10 = 2 \cdot 5\)</span>. Daar eindigen zowel de halven als de vijfden, en daarom ziet <span class="math inline">\(\tfrac{1}{5} = 0{,}2\)</span> er zo onschuldig uit. Binair bestaat dat getal niet.</p>
+<div class="columns">
+<div class="column" style="width:72%;">
+<div class="terzijde">
+<p>Dhahran, 25 februari 1991. Een Patriot-luchtafweersysteem hield de tijd bij in tienden van een seconde. Elke tik rondde af. Na honderd uur was de klok <span class="math inline">\(0{,}34\)</span> seconde mis, en bij raketsnelheid is dat ruim een halve kilometer. Het systeem miste, en achtentwintig Amerikaanse soldaten kwamen om.</p>
+</div>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:24%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../img/patriot.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Een Patriot-lanceerinstallatie."><img src="../img/patriot.jpg" class="img-fluid figure-img" alt="Een Patriot-lanceerinstallatie."></a></p>
+<figcaption>Een Patriot-lanceerinstallatie.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>En <span class="math inline">\(\tfrac{1}{10}\)</span> is gewoon <span class="math inline">\(0{,}1\)</span>, een getal dat je zonder nadenken opschrijft. Kijk dus eens wat een computer ervan maakt. <code>x == 3</code> stelt de vraag of <code>x</code> gelijk is aan drie, en antwoordt <code>True</code> of <code>False</code>. De cel hieronder stelt dus een vraag waarvan het antwoord in de wiskunde vastligt. Noteer je voorspelling voor je op Run Code klikt.</p>
+<div>
+<div id="pyodide-1" class="exercise-cell">
+
+</div>
+<script type="pyodide-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiMC4xICsgMC4yID09IDAuMyJ9
+</script>
+</div>
+<p>Wiskundig is die gelijkheid vanzelfsprekend, en toch antwoordt de cel dat ze onwaar is. Dit is geen fout van Python. Vrijwel elke programmeertaal geeft hetzelfde antwoord, en dat is al decennia zo. De volgende twee secties leggen uit waarom, en wanneer het wel goed gaat.</p>
+</section>
+<section id="kommagetallen-in-een-computer" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Kommagetallen in een computer</h1>
+<p>Hoe krijg je zo’n getal in een vast aantal bits? Je zou een vaste komma kunnen afspreken: zoveel bits ervoor, zoveel erna. Dat werkt niet, want met één afspraak moet je zowel de massa van een elektron als de afstand tot de zon kunnen weergeven.</p>
+<p>De oplossing is de wetenschappelijke notatie, in basis twee. Elk getal wordt</p>
+<p><span class="math display">\[
+\pm\, 1{,}m \cdot 2^{k} .
+\]</span></p>
+<p>Voor de komma is afgesproken dat er altijd een <span class="math inline">\(1\)</span> staat. Die hoeft dus niet opgeslagen te worden. Er blijven drie dingen over: het teken, de exponent <span class="math inline">\(k\)</span> en de cijfers <span class="math inline">\(m\)</span>. Zo’n getal heet een <strong>float</strong>, naar <em>floating point</em>: de komma ligt niet vast maar schuift mee met de exponent.</p>
+<p>Zo staat <span class="math inline">\(0{,}1\)</span> in <span class="math inline">\(32\)</span> bits.</p>
+<pre><code>teken   exponent   m
+    0   01111011   10011001100110011001101</code></pre>
+<p>Eén bit voor het teken, acht voor de exponent, drieëntwintig voor <span class="math inline">\(m\)</span>. Hier is <span class="math inline">\(k = -4\)</span>, want <span class="math inline">\(0{,}1 = 1{,}6 \cdot 2^{-4}\)</span>. Hoe die acht bits precies <span class="math inline">\(-4\)</span> voorstellen, laten we hier terzijde.</p>
+<p>Voor <span class="math inline">\(m\)</span> zijn er dus drieëntwintig plaatsen. De rij van <span class="math inline">\(0{,}1\)</span> houdt daar niet op. Ze wordt afgekapt en afgerond. Wat er werkelijk staat is <span class="math inline">\(0{,}100000001490116119384765625\)</span>.</p>
+<p>Python gebruikt <span class="math inline">\(64\)</span> bits, met elf voor de exponent en tweeënvijftig voor <span class="math inline">\(m\)</span>. Dezelfde opbouw, een kleinere afwijking, maar de afwijking is nog steeds niet nul.</p>
+<p>Met <span class="math inline">\(32\)</span> bits zijn er <span class="math inline">\(2^{32}\)</span> patronen, ruim vier miljard. Dat aantal ligt vast. Een geheel getal legt ze op een rij van ongeveer <span class="math inline">\(-2\)</span> tot <span class="math inline">\(+2\)</span> miljard, telkens één uit elkaar. Een float spreidt ze uit van het astronomisch grote tot het bijzonder kleine. Wat hij aan bereik wint, verliest hij in nauwkeurigheid. Rond <span class="math inline">\(1\)</span> liggen de noteerbare getallen dicht bij elkaar, rond een miljard niet meer.</p>
+</section>
+<section id="terug-naar-de-vraag" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Terug naar de vraag</h1>
+<p>Bekijk <span class="math inline">\(0{,}1\)</span> nu opnieuw. Als breuk is dat <span class="math inline">\(\tfrac{1}{10}\)</span>, en de noemer bevat de priemfactor <span class="math inline">\(5\)</span>. Volgens de voorwaarde hierboven eindigt de binaire ontwikkeling dus niet. Ze wordt periodiek:</p>
+<p><span class="math display">\[
+0{,}1 = 0{,}0\overline{0011}_2 .
+\]</span></p>
+<p>Er zijn eindig veel bits beschikbaar, dus wat opgeslagen wordt, is een benadering. Voor <span class="math inline">\(0{,}2\)</span> geldt hetzelfde. Tel je die twee benaderingen op, dan is de som niet gelijk aan de benadering van <span class="math inline">\(0{,}3\)</span>. Vraag de som eens rechtstreeks op, zonder ze te laten beoordelen.</p>
+<div>
+<div id="pyodide-2" class="exercise-cell">
+
+</div>
+<script type="pyodide-2-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiMC4xICsgMC4yIn0=
+</script>
+</div>
+<p>De cijferstaart achteraan is het verschil tussen wat er opgeslagen staat en <span class="math inline">\(0{,}3\)</span>. Daarop is de vergelijking hierboven stukgelopen.</p>
+<p>Niet elke gelijkheid loopt verkeerd af.</p>
+<div>
+<div id="pyodide-3" class="exercise-cell">
+
+</div>
+<script type="pyodide-3-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiMC41ICsgMC4yNSA9PSAwLjc1In0=
+</script>
+</div>
+<p>Deze gaat wel op. <span class="math inline">\(\tfrac{1}{2}\)</span> en <span class="math inline">\(\tfrac{1}{4}\)</span> hebben een macht van twee als noemer, worden dus exact opgeslagen, en hun som <span class="math inline">\(\tfrac{3}{4}\)</span> eveneens.</p>
+<p>Daar valt weinig mee aan te vangen in een echt programma, want daar weet je zelden op voorhand welke getallen er precies uit een berekening komen. De praktische regel is daarom:</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Opgelet">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Waarschuwing</span>Opgelet
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Test kommagetallen nooit op gelijkheid. Vergelijk in de plaats daarvan <span class="math inline">\(|x - y| &lt; \varepsilon\)</span>, met <span class="math inline">\(\varepsilon\)</span> een kleine drempel die past bij de nauwkeurigheid van de getallen waarmee je werkt.</p>
+</div>
+</div>
+</section>
+<section id="conclusie" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Conclusie</h1>
+<p>Een notatie van vaste breedte heeft een grens. Je botst er op drie manieren tegenaan.</p>
+<ul>
+<li>Het getal is te groot: de bits die niet passen vallen weg, en de teller loopt rond.</li>
+<li>De patronen raken op: er is geen volgend adres meer te geven.</li>
+<li>Het getal past niet precies in basis <span class="math inline">\(2\)</span>: er wordt afgerond, hoeveel bits je er ook aan geeft.</li>
+</ul>
+<p>Alleen de tweede merk je meteen. De andere twee leveren geen foutmelding op, en je programma rekent gewoon door met een verkeerd getal.</p>
+<p>Daarom moet je weten met welke getallen je werkt. Tel je iets op dat de grens kan raken, gebruik dan een breder type of reken modulo. Vergelijk je kommagetallen, gebruik dan de regel hierboven.</p>
+<p>En over de drie lessen heen: bits betekenen enkel wat je afspreekt dat ze betekenen. Hetzelfde patroon <span class="math inline">\(01000001_2\)</span> is <span class="math inline">\(65\)</span> als geheel getal, de letter <code>A</code> in <em>ASCII</em>-tekstcodering, een deel van een IP-adres, en een stuk van een instructie wanneer de processor het als code leest.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Verdieping">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Opmerking</span>Verdieping
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>De afspraken rond kommagetallen staan in <strong>IEEE 754</strong>, de norm uit 1985 die vrijwel elke processor volgt. Daar vind je ook wat een computer doet met nul, met oneindig, en met een berekening die helemaal geen getal oplevert. Dat laatste heet <code>NaN</code>, van <em>not a number</em>, en het heeft de eigenaardige eigenschap dat het niet gelijk is aan zichzelf.</p>
+<p>Voor de gehele getallen is er de stelling dat elk natuurlijk getal in elke basis precies één notatie heeft, op nullen vooraan na. Het herhaald delen uit de vorige les is die stelling in uitgevoerde vorm.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="begrippen" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Begrippen</h1>
+<ul>
+<li><strong>overloop</strong>: wat er gebeurt wanneer een resultaat niet in het beschikbare aantal bits past. De bits die er niet meer bij passen, vallen weg. In het Engels <em>overflow</em>.</li>
+<li><strong>modulo</strong>: rekenen waarbij enkel de rest bij deling telt. Een teller van <span class="math inline">\(n\)</span> bits rekent modulo <span class="math inline">\(2^n\)</span>, in Python geschreven met de operator <code>%</code>.</li>
+<li><strong>float</strong>: de notatie van een kommagetal als <span class="math inline">\(\pm 1{,}m \cdot 2^{k}\)</span>, waarbij de komma met de exponent meeschuift.</li>
+</ul>
+</section>
+<section id="oefeningen" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Oefeningen</h1>
+<ol type="1">
+<li><p>Een teller in één byte staat op <span class="math inline">\(200\)</span>, en er komt <span class="math inline">\(100\)</span> bij. Welke waarde bevat de byte daarna?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antwoord">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(200 + 100 = 300\)</span>, en dat past niet in acht bits. Er blijft <span class="math inline">\(300 \bmod 256 = 44\)</span> over. De byte is over zijn grens gelopen zonder enige foutmelding.</p>
+</div>
+</div>
+</div></li>
+<li><p>Verklaar waarom <span class="math inline">\(0{,}1 + 0{,}2 = 0{,}3\)</span> in de meeste programmeertalen onwaar is, terwijl <span class="math inline">\(0{,}5 + 0{,}25 = 0{,}75\)</span> wel waar is.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antwoord">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>De noemers van <span class="math inline">\(0{,}1\)</span> en <span class="math inline">\(0{,}2\)</span> bevatten de priemfactor <span class="math inline">\(5\)</span>, dus beide getallen worden afgerond opgeslagen. De som van die twee benaderingen is niet gelijk aan de benadering van <span class="math inline">\(0{,}3\)</span>. Bij <span class="math inline">\(\tfrac{1}{2}\)</span> en <span class="math inline">\(\tfrac{1}{4}\)</span> is de noemer wel een macht van twee, waardoor beide getallen en hun som exact zijn.</p>
+</div>
+</div>
+</div></li>
+<li><p>Een programma telt tienduizend keer <span class="math inline">\(0{,}1\)</span> op bij een variabele die op <span class="math inline">\(0\)</span> begint. Waarom staat er achteraf niet precies <span class="math inline">\(1000\)</span>, en hoe zou je het anders aanpakken?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antwoord">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Elke optelling voegt de afrondingsfout van <span class="math inline">\(0{,}1\)</span> opnieuw toe, en die fouten stapelen zich op. Beter tel je tienduizend keer een geheel getal op en deel je pas op het einde één keer.</p>
+</div>
+</div>
+</div></li>
+</ol>
+
+
+<script type="pyodide-data">
+eyJvcHRpb25zIjp7ImVudiI6eyJQTE9UTFlfUkVOREVSRVIiOiJwbG90bHlfbWltZXR5cGUifSwiaW5kZXhVUkwiOiJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvcHlvZGlkZS92MC4yOC4xL2Z1bGwvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsicHlvZGlkZV9odHRwIiwibWljcm9waXAiLCJpcHl0aG9uIl19fQ==
+</script>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJweW9kaWRlLTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8zID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzMgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0yLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzIgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF9weW9kaWRlX2VkaXRvcl8xID0ge1xuICBjb25zdCB7IFB5b2RpZGVFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwicHlvZGlkZS0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHB5b2RpZGUtMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBQeW9kaWRlRXhlcmNpc2VFZGl0b3IoXG4gICAgcHlvZGlkZU9qcy5weW9kaWRlUHJvbWlzZSxcbiAgICBibG9jay5jb2RlLFxuICAgIG9wdGlvbnNcbiAgKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl9weW9kaWRlX3ZhbHVlXzEgPSBweW9kaWRlT2pzLnByb2Nlc3MoX3B5b2RpZGVfZWRpdG9yXzEsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJweW9kaWRlLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJweW9kaWRlT2pzID0ge1xuICBjb25zdCB7XG4gICAgUHlvZGlkZUV2YWx1YXRvcixcbiAgICBQeW9kaWRlRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUHl0aG9uLFxuICAgIHN0YXJ0UHlvZGlkZVdvcmtlcixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoLFxuICB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcblxuICBjb25zdCBzdGF0dXNDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctc3RhdHVzXCIpO1xuICBjb25zdCBpbmRpY2F0b3JDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcImV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpbmRpY2F0b3JDb250YWluZXIuY2xhc3NMaXN0LnJlbW92ZShcImQtbm9uZVwiKTtcblxuICBsZXQgc3RhdHVzVGV4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgc3RhdHVzVGV4dC5jbGFzc0xpc3QgPSBcImV4ZXJjaXNlLWxvYWRpbmctZGV0YWlsc1wiO1xuICBzdGF0dXNUZXh0ID0gc3RhdHVzQ29udGFpbmVyLmFwcGVuZENoaWxkKHN0YXR1c1RleHQpO1xuICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluaXRpYWxpc2VgO1xuXG4gIC8vIEhvaXN0IGluZGljYXRvciBvdXQgZnJvbSBmaW5hbCBzbGlkZSB3aGVuIHJ1bm5pbmcgdW5kZXIgcmV2ZWFsXG4gIGNvbnN0IHJldmVhbFN0YXR1cyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsIC5leGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaWYgKHJldmVhbFN0YXR1cykge1xuICAgIHJldmVhbFN0YXR1cy5yZW1vdmUoKTtcbiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCA+IC5zbGlkZXNcIikuYXBwZW5kQ2hpbGQocmV2ZWFsU3RhdHVzKTtcbiAgfVxuXG4gIC8vIE1ha2UgYW55IHJldmVhbCBzbGlkZXMgd2l0aCBsaXZlIGNlbGxzIHNjcm9sbGFibGVcbiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbChcIi5yZXZlYWwgLmV4ZXJjaXNlLWNlbGxcIikuZm9yRWFjaCgoZWwpID0+IHtcbiAgICBlbC5jbG9zZXN0KCdzZWN0aW9uLnNsaWRlJykuY2xhc3NMaXN0LmFkZChcInNjcm9sbGFibGVcIik7XG4gIH0pXG5cbiAgLy8gUHlvZGlkZSBzdXBwbGVtZW50YWwgZGF0YSBhbmQgb3B0aW9uc1xuICBjb25zdCBkYXRhQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJweW9kaWRlLWRhdGFcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZGF0YUNvbnRlbnQpKTtcblxuICAvLyBHcmFiIGxpc3Qgb2YgcmVzb3VyY2VzIHRvIGJlIGRvd25sb2FkZWRcbiAgY29uc3QgZmlsZXNDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcInZmcy1maWxlXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZmlsZXMgPSBKU09OLnBhcnNlKGI2NERlY29kZShmaWxlc0NvbnRlbnQpKTtcblxuICBsZXQgcHlvZGlkZVByb21pc2UgPSAoYXN5bmMgKCkgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgUHlvZGlkZWA7XG4gICAgY29uc3QgcHlvZGlkZSA9IGF3YWl0IHN0YXJ0UHlvZGlkZVdvcmtlcihkYXRhLm9wdGlvbnMpO1xuXG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiBtaWNyb3BpcGA7XG4gICAgYXdhaXQgcHlvZGlkZS5sb2FkUGFja2FnZShcIm1pY3JvcGlwXCIpO1xuICAgIGNvbnN0IG1pY3JvcGlwID0gYXdhaXQgcHlvZGlkZS5weWltcG9ydChcIm1pY3JvcGlwXCIpO1xuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIG1pY3JvcGlwLmluc3RhbGwocGtnKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcbiAgICBhd2FpdCBtaWNyb3BpcC5kZXN0cm95KCk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCBweW9kaWRlLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKGUubmFtZSAhPT0gXCJFcnJub0Vycm9yXCIpIHRocm93IGU7XG4gICAgICAgICAgaWYgKGUuZXJybm8gIT09IDIwKSB7XG4gICAgICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICAgICAgY29uc3QgZXJyb3JUZXh0ID0gYXdhaXQgcHlvZGlkZS5fbW9kdWxlLlVURjhUb1N0cmluZyhlcnJvclRleHRQdHIpO1xuICAgICAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBGaWxlc3lzdGVtIEVycm9yICR7ZS5lcnJub30gXCIke2Vycm9yVGV4dH1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHRyeSB7XG4gICAgICAgIHJldHVybiBhd2FpdCBweW9kaWRlLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgIGlmIChlLm5hbWUgIT09IFwiRXJybm9FcnJvclwiKSB0aHJvdyBlO1xuICAgICAgICBjb25zdCBlcnJvclRleHRQdHIgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuX3N0cmVycm9yKGUuZXJybm8pO1xuICAgICAgICBjb25zdCBlcnJvclRleHQgPSBhd2FpdCBweW9kaWRlLl9tb2R1bGUuVVRGOFRvU3RyaW5nKGVycm9yVGV4dFB0cik7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvciAke2UuZXJybm99IFwiJHtlcnJvclRleHR9XCIuYCk7XG4gICAgICB9XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFB5b2RpZGUgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUHl0aG9uKHB5b2RpZGUpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHB5b2RpZGU7XG4gIH0pKCkuY2F0Y2goKGVycikgPT4ge1xuICAgIHN0YXR1c1RleHQuc3R5bGUuY29sb3IgPSBcInZhcigtLWV4ZXJjaXNlLWVkaXRvci1obC1lciwgI0FEMDAwMClcIjtcbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gZXJyLm1lc3NhZ2U7XG4gICAgLy9pbmRpY2F0b3JDb250YWluZXIucXVlcnlTZWxlY3RvcihcIi5zcGlubmVyLWdyb3dcIikuY2xhc3NMaXN0LmFkZChcImQtbm9uZVwiKTtcbiAgICB0aHJvdyBlcnI7XG4gIH0pO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCBweW9kaWRlID0gYXdhaXQgcHlvZGlkZVByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFB5b2RpZGVFdmFsdWF0b3IocHlvZGlkZSwgY29udGV4dCk7XG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHlvZGlkZVByb21pc2UsXG4gICAgcmVuZGVyZWRPanMsXG4gICAgcHJvY2VzcyxcbiAgfTtcbn1cbiJ9XX0=
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
+</section>
+
+</main> <!-- /main -->
+<script>
+// Copy buttons for quarto-live code blocks.
+//
+// Quarto renders its own code blocks server side, each with a copy button
+// already in the markup, and at load it constructs one ClipboardJS instance
+// bound to the selector ".code-copy-button". quarto-live works differently: it
+// ships each cell as base64 in a <script type="pyodide-N-contents"> tag and
+// builds the DOM for it in the browser, which happens after Quarto has already
+// written its markup. Those blocks therefore never carry a button.
+//
+// ClipboardJS was given a selector string rather than a list of elements, so it
+// delegates from the document and picks up anything matching that selector
+// later on. Inserting the same button markup is enough, and no second
+// ClipboardJS instance is needed.
+(() => {
+  const BUTTON = 'Copy to Clipboard';
+
+  const addButton = (block) => {
+    if (block.querySelector(':scope > .code-copy-button')) return;
+    // Quarto wraps its own highlighted fences in a scaffold div and puts the
+    // button there, beside div.sourceCode rather than inside it.
+    if (block.parentElement && block.parentElement.matches('.code-copy-outer-scaffold')) return;
+    if (!block.querySelector('code')) return;
+    // The button is position:absolute with right:0, so it needs a positioned
+    // block to sit in. Quarto's own blocks get that from its CSS, the ones
+    // quarto-live builds come out static and would fling the button into the
+    // right margin.
+    if (getComputedStyle(block).position === 'static') {
+      block.style.position = 'relative';
+    }
+    const button = document.createElement('button');
+    button.title = BUTTON;
+    button.className = 'code-copy-button';
+    button.innerHTML = '<i class="bi"></i>';
+    block.appendChild(button);
+  };
+
+  const scan = (root) => {
+    if (root.nodeType !== Node.ELEMENT_NODE) return;
+    if (root.matches('div.sourceCode')) addButton(root);
+    root.querySelectorAll('div.sourceCode').forEach(addButton);
+  };
+
+  scan(document.body);
+
+  new MutationObserver((records) => {
+    for (const record of records) {
+      for (const node of record.addedNodes) scan(node);
+    }
+  }).observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../getallen";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Gekopieerd!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Gekopieerd!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../getallen/bits-en-bytes.html" class="pagination-link" aria-label="Rekenen met bits, en ze groeperen">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Rekenen met bits, en ze groeperen</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../getallen/zelftoets.html" class="pagination-link" aria-label="Zelftoets">
+        <span class="nav-page-text">Zelftoets</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><img src="../assets/vp-logo.png" alt="Vita et Pax" height="22"> Vita et Pax · Schoten</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
