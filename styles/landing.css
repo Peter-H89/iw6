@@ -1,0 +1,69 @@
+/* Front-page mark, opted into per page, never on a lesson page.
+
+   Two marks share every rule except the glyph. iw6 and the splash page carry a
+   lambda from CMU Serif Roman, the serif companion of the body font, drawn as a
+   path because the site ships CMU Bright only. tech1 carries a tau from the same
+   font, for techne, the Greek word for craft that techniek descends from.
+   Both are masks rather than background images, so the colour comes from
+   --bs-primary and one asset serves both modes. The marks are
+   shared/assets/vp-lambda.svg and vp-tau.svg. The decks put the same lambda
+   behind their title slide. The paths are relative to where this file lands,
+   _site/styles/. Quarto follows a url() in a page-level stylesheet and copies
+   the target at its own path, so both land in _site/assets/ with no resources
+   entry. Tested on 1.9.38. */
+
+.lambda-mark {
+  -webkit-mask-image: url("../assets/vp-lambda.svg");
+          mask-image: url("../assets/vp-lambda.svg");
+}
+
+.tau-mark {
+  -webkit-mask-image: url("../assets/vp-tau.svg");
+          mask-image: url("../assets/vp-tau.svg");
+}
+
+.lambda-mark,
+.tau-mark {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;          /* never eat a click meant for the page */
+  background-color: var(--bs-primary, #536681);
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  /* Off right and bleeding past the edge, so it frames rather than underlays. */
+  -webkit-mask-position: 88% 46%;
+          mask-position: 88% 46%;
+  -webkit-mask-size: auto 78vh;
+          mask-size: auto 78vh;
+  opacity: .05;
+}
+
+/* The tau is a squat glyph and reads larger than the lambda at the same
+   height, so it gets less of it. It also needs its own vertical position: a
+   mask-position percentage places the glyph in the room the glyph leaves over,
+   so the shared 46% hangs a shorter glyph higher instead of setting it on the
+   same line. At 75% the foot of the tau lands on the foot of the lambda, and
+   since both sizes are in vh it stays there at any viewport height. Declared
+   after the shared block so both win. */
+.tau-mark {
+  -webkit-mask-size: auto 52vh;
+          mask-size: auto 52vh;
+  -webkit-mask-position: 88% 75%;
+          mask-position: 88% 75%;
+}
+
+/* On a phone the glyph would sit across the text at this size. */
+@media (max-width: 600px) {
+  .lambda-mark,
+  .tau-mark {
+    -webkit-mask-size: auto 42vh;
+            mask-size: auto 42vh;
+    -webkit-mask-position: 92% 88%;
+            mask-position: 92% 88%;
+  }
+}
+
+/* No prefers-reduced-transparency guard. That setting is for transparency you
+   read THROUGH, and this sits behind the margin. A guard was tried and it just
+   hid the mark on any Mac with Reduce transparency on. */
