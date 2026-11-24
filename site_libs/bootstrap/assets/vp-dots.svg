@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 3">
+  <!-- The three squares from the emblem, regularised onto a 3x3 grid: cells 0,
+       2 and 7 filled, the rest empty. The mark's own spacing is close to this
+       but not on a grid, its lower square sitting 2.31 cell heights down rather
+       than 2, which reads as arbitrary at this size. -->
+  <rect x="0" y="0" width="1" height="1"/>
+  <rect x="2" y="0" width="1" height="1"/>
+  <rect x="1" y="2" width="1" height="1"/>
+</svg>
